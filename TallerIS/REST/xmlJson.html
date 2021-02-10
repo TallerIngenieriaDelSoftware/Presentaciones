@@ -1,0 +1,462 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formatos neutros XML y Json</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="../../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../../theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="../../js/slides" src="../../js/require-1.0.8.min.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28605511-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body style="opacity: 0">
+
+<!-- <slides class="layout-widescreen">-->
+<slides>
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="../../images/logo-uji.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title>Taller de Ingeniería del Sotware</h1>
+      <h2 data-config-subtitle>Formatos neutros XML y Json</h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+		<!-- Introducción -->
+        <slide>
+        <hgroup>
+			<h2>Introducción</h2>
+        </hgroup>
+		<article>
+            <p>Para que nuestras aplicaciones sean lo más abiertas posibles desde el
+                punto de vista de la composición de servicios, resulta de gran utilidad usar 
+                formatos neutros.</p>
+            <p>La neutralidad de estos formatos significa que no están ligados a ninguna 
+                tecnología específica, al contrario, son formatos transversales
+                que pueden ser utilizados por muchas tecnologías distintas.</p>
+            <p>En este capítulo veremos el soporte que Java ofrece a los formatos 
+                XML y Json, y cómo utilizarlos en nuestra aplicaciones REST.</p>
+		</article>
+		</slide>
+		
+		<!-- Contenidos -->
+        <slide>
+        <hgroup>
+			<h2>Contenidos</h2>
+        </hgroup>
+		<article>
+            <ol>
+                <li>XML.</li>
+                <li>XML en Java con JAXB.</li>
+                <li>Json.</li>
+                <li>Json en Java con Jettison.</li>
+                <li>Negociación de contenido.</li>
+            </ol>
+		</article>
+		</slide>
+		
+        <!-- XML -->
+        <slide>
+        <hgroup>
+            <h2>XML</h2>
+        </hgroup>
+        <article>
+            <p>XML es el acrónimo de <a href="http://www.w3.org/standards/xml/core" target="_blank">
+                Extensible Markup Language</a>, o Lenguaje de Marcado 
+                Extensible.</p>
+            <p>Su propósito es representar información de forma estructurada.</p>
+            <p>Algunas de sus características son:</p>
+            <ul>
+                <li>Un documento XML sólo tiene una raíz.</li>
+                <li>Toda etiqueta debe cerrarse.</li>
+                <li>Las etiquetas se deben anidar correctamente.</li>
+            </ul>
+            <p>Un documento debe estar bien formado.</p>
+            <p>Se dice que un documento es válido si se ajusta a un esquema.</p>
+            <p>Cada uno de los items de información de un documento XML se llama elemento.</p>
+        </article>
+        </slide>
+
+        <!-- XML -->
+        <slide>
+        <hgroup>
+            <h2>XML</h2>
+        </hgroup>
+        <article>
+            <p>Los esquemas o <a href="http://www.w3.org/standards/xml/schema.html" target="_blank">
+                XML-Schema</a> son documentos XML que sirven para validar la formación
+                correcta de documentos XML que contienen representación de datos.</p>
+            <p>Los XML-Schemas estableces restricciones a los elementos que pueden
+                aparecer en un fichero XML, como:</p>
+            <ul>
+                <li>Tipo de los elementos.</li>
+                <li>Orden de los elementos.</li>
+                <li>Atributos que pueden tener un elemento.</li>
+            </ul>
+            <p>Podemos usar un XML-Schema para validar si un documento XML es válido.</p>
+        </article>
+        </slide>
+
+        <!-- XML en Java con JAXB -->
+        <slide>
+        <hgroup>
+            <h2>XML en Java con JAXB</h2>
+        </hgroup>
+        <article>
+            <p>El paquete estándar de Java proporciona clases para trabajar con
+                documentos XML, conocido como <a href="http://jaxb.java.net/" target="_blank">
+                JAXB</a> (Java Architecture for
+                XML Binding)</p>
+            <p>Con estas clases vamos a poder:</p>
+            <ul>
+                <li>Generar un documento XML a partir de los atributos de un objeto: marshalling.</li>
+                <li>Crear un objeto a partir de se representación como XML: unmarshalling.</li>
+            </ul>
+        </article>
+        </slide>
+
+        <!-- XML en Java con JAXB -->
+        <slide>
+        <hgroup>
+            <h2>XML en Java con JAXB</h2>
+        </hgroup>
+        <article>
+            <p>Afortunadamente, trabajar con XML desde Java es relativamente sencillo.</p>
+            <p>De nuevo, gran parte del trabajo consiste en anotar nuestras clases.</p>
+            <p>Es obligatorio que nuestra clase cuente con el constructor por defecto.</p>
+            <p>JAXB forma parte de la edición estándar en la versión 7 (1.7) de Java.</p>
+        </article>
+        </slide>
+
+        <!-- XML en Java con JAXB -->
+        <slide>
+        <hgroup>
+            <h2>XML en Java con JAXB</h2>
+        </hgroup>
+        <article>
+            <p>Veamos un ejemplo:</p>
+<pre class="prettyprint" data-lang="Java">
+@XmlRootElement(name="persona")
+@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlType(propOrder={"nombre", "apellidos"} )
+public class Persona {
+    private String nombre;
+    private String apellidos;
+    @XmlAttribute
+    private String nif
+    @XmlTransient
+    public static final Persona NULL = new Persona();
+
+    public Persona() {
+        super();
+    }
+    
+    // getters / setters para los elementos, no los atributos.
+</pre>
+        </article>
+        </slide>
+
+        <!-- XML en Java con JAXB -->
+        <slide>
+        <hgroup>
+            <h2>XML en Java con JAXB</h2>
+        </hgroup>
+        <article>
+            <p>Con la clase anterior anotado obtendríamos documentos XML como:</p>
+<pre class="prettyprint" data-lang="XML">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+&lt;persona nif=&quot;123&quot;&gt;
+    &lt;nombre&gt;Oscar&lt;/nombre&gt;
+    &lt;apellidos&gt;Belmonte&lt;/apellidos&gt;
+&lt;/persona&gt;
+</pre>
+        </article>
+        </slide>
+
+        <!-- Json -->
+        <slide>
+        <hgroup>
+            <h2>Json</h2>
+        </hgroup>
+        <article>
+            <p><a href="http://www.json.org/" target="_blank">Json</a> 
+                (JavaScript Object Notation) es un formato ligero para el 
+                intercambio de datos.</p>
+            <p>De nuevo, es un formato neutro, se puede utilizar desde muchas tecnologías
+                en particular desde javascript, lenguaje de programación en el 
+                que nació esta representación.</p>
+        </article>
+        </slide>
+
+        <!-- Json en Java con Jetisson -->
+        <slide>
+        <hgroup>
+            <h2>Json en Java con Jetisson</h2>
+        </hgroup>
+        <article>
+            <p>Para utilizar Json en nuestro proyectos, debemos incluir la siguiente 
+                dependencia:</p>
+<pre class="prettyprint" data-lang="xml">
+&lt;dependency&gt;
+    &lt;groupId&gt;org.glassfish.jersey.media&lt;/groupId&gt;
+    &lt;artifactId&gt;jersey-media-json-jettison&lt;/artifactId&gt;
+    &lt;version&gt;2.4.1&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.glassfish&lt;/groupId&gt;
+    &lt;artifactId&gt;javax.json&lt;/artifactId&gt;
+    &lt;version&gt;1.0.4&lt;/version&gt;
+&lt;/dependency&gt;
+</pre>
+        </article>
+        </slide>
+
+        <!-- Json en Java con Jetisson -->
+        <slide>
+        <hgroup>
+            <h2>Json en Java con Jetisson</h2>
+        </hgroup>
+        <article>
+            <p>Además hay que crear la clase <b>JaxbContextResolver</b>, tal y como tienes en el ejemplo, y añadir las siguientes llamadas a métodos en la clase <b>MiAplicación</b>:
+<pre class="prettyprint" data-lang="Java">
+register(new JettisonFeature());
+property(JsonGenerator.PRETTY_PRINTING, true);
+</pre>
+        </article>
+        </slide>
+
+        <!-- Json en Java con Jetisson -->
+        <slide>
+        <hgroup>
+            <h2>Json en Java con Jetisson</h2>
+        </hgroup>
+        <article>
+            <p>Si nuestras clases están anotadas con JAXB, Jersey invocará a Jetisson 
+                de manera transparente para nosotros, si el formato de la 
+                respuesta es Json.</p>
+            <p>El resultado en este caso será:</p>
+<pre class="prettyprint" data-lang="json">
+{&quot;@nif&quot;:&quot;123&quot;,&quot;nombre&quot;:&quot;Oscar&quot;,&quot;apellidos&quot;:&quot;Belmonte&quot;}
+</pre>
+        </article>
+        </slide>
+
+        <!-- Negociación de contenido -->
+        <slide>
+        <hgroup>
+            <h2>Negociación de contenido</h2>
+        </hgroup>
+        <article>
+            <p>La negociación de contenido se refiere a cómo atiende el servidor 
+                a las preferencias del cliente.</p>
+            <p>El cliente establece preferencias que el servidor intenta satisfacer.</p>
+            <p>Ocasionalmente, puede ocurrir que el servidor no pueda satirfacer
+                las preferencias del cliente.</p>
+        </article>
+        </slide>
+
+        <!-- Negociación de contenido -->
+        <slide>
+        <hgroup>
+            <h2>Negociación de contenido</h2>
+        </hgroup>
+        <article>
+            <p>Las preferencias el cliente las establece a través de las cabeceras de la 
+                petición.</p>
+            <p>Para ello dispone de dos grupos de cabeceras:</p>
+            <ul>
+                <li>Las que comienzan con <b>Accept-*</b> que hacen referencia al idioma, 
+                    codificación, o tipo de formato.</li>
+                <li>Las que comienzan con <b>Content-*</b> que hacen referencia a la entidad,
+                    y con las que se puede especificar el formato de la entidad: lenguaje, 
+                    codificación, formato.</li>
+            </ul>
+        </article>
+        </slide>
+
+        <!-- Negociación de contenido -->
+        <slide>
+        <hgroup>
+            <h2>Negociación de contenido</h2>
+        </hgroup>
+        <article>
+            <p>En el caso del cliente, será la aplicación cliente, por ejemplo curl o Poster, 
+                quien definirá las cabeceras para la negociación de contenido.</p>
+            <p>En el caso particular del cliente Jersey, disponemos de los
+            	método:</p>
+            	<ul>
+            		<li><b>accept(MediaType.APPLICATION_XML)</b> si lo que 
+            			queremos establecer es la cabecera <b>Accept</b>.</li>
+            		<li><b>header(String cabecera, String valor)</b> para 
+            			cualquier otro tipo de cabecera.</li>
+            	</ul>
+            <!-- Sección 7.2 de los apuntes de Carlos -->
+            <p>En el caso del servidor, JAX-RS define la etiqueta <b>@Produces</b> con la
+                que se indica el MIME-Type que genera el método, de tal modo que se seleccionará
+                el método que se ajuste al <b>Accept</b> de la petición del cliente.</p>
+        </article>
+        </slide>
+
+        <!-- Negociación de contenido -->
+        <slide>
+        <hgroup>
+            <h2>Negociación de contenido</h2>
+        </hgroup>
+        <article>
+            <p>Si lo que necesitásemos es conocer una cabecera en particular, 
+            	podemos pedir que <b>Jersey</b> nos la inyecte en un parámetro
+            	de un método con la anotación 
+            	<b>@HeaderParam(String cabecera)</b></p>
+<pre class="prettyprint" data-lang="Java">
+public Response agenda(@HeaderParam("Accept") String header) {
+</pre>
+			<p>En el argumento <b>header</b> <b>Jersey</b> nos habrá inyectado
+				el valor de la cabecera <b>Accept</b> solicitada por el 
+				cliente.</p>
+        </article>
+        </slide>
+
+        <!-- Negociación de contenido -->
+        <slide>
+        <hgroup>
+            <h2>Negociación de contenido</h2>
+        </hgroup>
+        <article>
+        	<p>Si lo que necesitamos es tener acceso a cualquiera de las 
+        		cabeceras que nos llegan en la petición, podemos hacer uso
+        		de la anotación <b>@Context</b> sobre un argumento de tipo 
+        		<b>HttpHeader</b>.</p>
+<pre class="prettyprint" data-lang="Java">
+@GET
+public String getInfo(@Context HttpHeaders headers) {
+    MultivaluedMap<String, String> headerParams = headers.getRequestHeaders();
+    ...
+</pre>
+            <p>La clase <b>HttpHeaders</b> cuenta además con un par de métodos útiles
+                para extraer las preferencias del cliente:</p>
+<pre class="prettyprint" data-lang="Java">
+@GET
+public Response get(@Context HttpHeaders headers) {
+    MediaType type = headers.getAcceptableMediaTypes().get(0);
+    Locale language = headers.getAcceptableLanguages().get(0);
+    ...
+</pre>
+        </article>
+        </slide>
+
+        <!-- Negociación de contenido -->
+        <slide>
+        <hgroup>
+            <h2>Negociación de contenido</h2>
+        </hgroup>
+        <article>
+            <p>JAX-RS proporciona las clases <b>VariantBuilder</b> y <b>Variant</b> para filtrar,
+                de un modo sencillo, la mejor respuesta basándose en las preferencias del 
+                cliente:</p>
+<pre class="prettyprint" data-lang="Java">
+@GET
+public Response get(@Context Request request) {
+	VariantListBuilder vb = Variant.VariantListBuilder.newInstance();
+	// Fijamos lo que somos capaces de generar
+	vb.mediaTypes(new MediaType("application/json", null))
+		.languages(new Locale("es"), new Locale("en"))
+		.encodings("deflate")
+		.add()
+		.mediaTypes(new MediaType("text/plain", null))
+		.languages(new Locale("es"));
+</pre>		
+        </article>
+        </slide>
+
+        <!-- Negociación de contenido -->
+        <slide>
+        <hgroup>
+            <h2>Negociación de contenido</h2>
+        </hgroup>
+        <article>
+        	<p>Continuación:</p>
+<pre class="prettyprint" data-lang="Java">
+	// Lo contrastamos con lo que nos solicita el cliente
+	Variant best = request.selectVariant(vb.build());
+	// Si no hay ninguna correspondencia, devolvemos un error
+	if (best==null)
+		return Response.notAcceptable(null).build();
+	// Si hay una variante posible, añadimos la variante a las cabeceras de
+	// la respuesta
+	ResponseBuilder builder = Response.ok();
+	builder.type(best.getMediaType())
+		.language(best.getLanguage())
+		.header("Content-Encoding", best.getEncoding());
+		
+	return builder.build();
+}
+</pre>
+        </article>
+        </slide>
+
+		<!-- Resumen -->
+        <slide>
+        <hgroup>
+			<h2>Resumen</h2>
+        </hgroup>
+		<article>
+            <p>En este capítulo hemos visto el soporte que ofrece Java para el manejo de
+                XML y Json.</p>
+            <p>También hemos visto lo sencillo que resulta en Jersey, generar formato XML 
+                y Json.</p>
+            <p>Finalmente hemos visto qué significa la negociación de contenido y las
+                facilidades disponibles en Jersey para hacer esta negociación.</p>
+            <p>A partir de ahora, debes utilizar, siempre que sea posible, formatos neutros
+                para el intercambio de datos en tus aplicaciones REST.</p>
+		</article>
+		</slide>
+
+		<slide class="backdrop"></slide>
+        
+    </slides>
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

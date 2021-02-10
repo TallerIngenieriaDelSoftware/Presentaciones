@@ -1,0 +1,283 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>El método GET</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="../../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../../theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="../../js/slides" src="../../js/require-1.0.8.min.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28605511-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body style="opacity: 0">
+
+<!-- <slides class="layout-widescreen">-->
+<slides>
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="../../images/logo-uji.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title>Taller de Ingeniería del Software</h1>
+      <h2 data-config-subtitle>El método GET</h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+		<!-- Introducción -->
+        <slide>
+        <hgroup>
+			<h2>Introducción</h2>
+        </hgroup>
+		<article>
+            <p>En este capítulo vamos a conocer el soporte que ofrece Jersey
+                para definir métodos que responden a peticiones GET.</p>
+            <p>Para ello, deberemos previamente conocer cómo definir recursos
+                en Jersey.</p>
+            <p>También veremos cómo definir y extraer path variables.</p>
+            <p>Finalmente veremos cómo construir respuestas.</p>
+		</article>
+		</slide>
+		
+		<!-- Contenidos -->
+        <slide>
+        <hgroup>
+			<h2>Contenidos</h2>
+        </hgroup>
+		<article>
+			<ol>
+				<li>El método GET.</li>
+				<li>Definición de recursos. La anotación @Path.</li>
+				<li>Definición del método GET. La anotación @GET.</li>
+				<li>URIs como parámetros. La anotación @PathParm.</li>
+				<li>Extracción de los parámetros de la petición. La anotación @QueryParam.</li>
+				<li>Creando la respuesta: La anotación @Produces y la clase <b>Response</b>.</li>
+			</ol>
+		</article>
+		</slide>
+		
+		<!-- El método GET -->
+        <slide>
+        <hgroup>
+			<h2>El método GET</h2>
+        </hgroup>
+		<article>
+			<p>El método <b>GET</b> se utiliza para recuperar un recurso.</p>
+			<p>GET es idempotente, seguro y cacheable.</p>
+			<p>El recurso se indica a través de una URI.</p>
+			<p>En la petición se pueden incluir parámetros, como los que provienen
+				de un formulario.</p>
+			<p>En las cabeceras de la petición se puede incluir preferencias sobre
+				el idioma, o el formato de la respuesta.</p>
+			<p>El cuerpo de la respuesta incluye el recurso solicitado.</p>
+			<p>Las cabeceras de la respuesta incluyen información sobre el lenguaje
+				utilizado, el formato, o la longitud de la respuesta en bytes.</p>  
+		</article>
+		</slide>
+
+		<!-- Definición de recursos. La anotación @Path -->
+        <slide>
+        <hgroup>
+			<h2>Definición de recursos</h2>
+        </hgroup>
+		<article>
+			<p>En Jersey un recurso se define utilizando la anotación
+				@Path("dirección")</p>
+			<p>Esta anotación puede aplicarse sobre la clase, sobre
+				un método específico, o sobre ambos.</p>
+			<p>Si se coloca sobre un método, el path para acceder a él
+				será el de la clase, de existir, más el del método.</p>
+			<p>Por ejemplo, puedes etiquetar un clase con @Path("hello")
+				para indicar que la URI http://localhost:8080/services/hello
+				hace referencia a esta clase.</p>
+<pre class="prettyprint" data-lang="java">
+@Path("hello")
+public class Hello {
+</pre>
+		</article>
+		</slide>
+
+		<!-- Definición del método GET. La anotación @GET -->
+        <slide>
+        <hgroup>
+			<h2>Definición del método GET</h2>
+        </hgroup>
+		<article>
+			<p>Para indicar que un método responde a peticiones GET 
+				lo anotamos con @GET, simplemente.</p>
+			<p>Para acceder al servicio que proporciona ese método
+				hacemos una petición GET a la URI que se especifica
+				en su path.</p>
+			<p>Por ejemplo, puedes etiquetar un método con @GET para 
+				indicar que es quien responde a este tipo de peticiones.</p>
+<pre class="prettyprint" data-lang="java">
+@GET
+public String hello() {
+	return "Hello";
+}
+</pre>
+		</article>
+		</slide>
+
+		<!-- URIs como parámetros. La anotación @PathParm -->
+        <slide>
+        <hgroup>
+			<h2>URIs como parámetros</h2>
+        </hgroup>
+		<article>
+			<p>Hay casos en los que especificar una URI de modo estático no es
+				viable. Imagina, por ejemplo, que quieres definir una URI para 
+				cada uno de los contactos de tu agenda a los que accedes
+				por su NIF. Crear un método anotado con @Path("1234X") para cada 
+				entrada de la agenda no es práctico.</p>
+			<p>En este caso, podemos indicar que la URI es un parámetro de la
+				petición de este modo:</p>
+<pre class="prettyprint" data-lang="java">
+@Path("{nif}")
+public Response buscaPersonaPorNIF(@PathParam("nif") String nif)
+</pre>
+			<p>Fíjate que el parámetro variable que corresponde a la URI
+				va encerrado entre llaves.</p>
+		</article>
+		</slide>
+
+		<!-- URIs como parámetros. La anotación @PathParm -->
+        <slide>
+        <hgroup>
+			<h2>URIs como parámetros</h2>
+        </hgroup>
+		<article>
+			<p>Para recuperar la parte variable de la URI utilizamos 
+				@PathParam("nif") String nif. En este caso, Jersey inyectará en
+				este parámetro del método una cadena que contiene el path
+				variable de la petición.</p>
+			<p>Si necesitas recuperar el path variable como un entero, basta 
+				con cambiar el tipo del argumento del método, Jersey inyectará
+				el argumento con el tipo adecuado.</p>
+		</article>
+		</slide>
+
+		<!-- Extracción de los parámetros de la petición. La anotación @QueryParam -->
+        <slide>
+        <hgroup>
+			<h2>Extracción de los parámetros de la petición</h2>
+        </hgroup>
+		<article>
+			<p>El método GET puede recibir parámetros, que se especifican en la petición
+				de este modo http://localhost:8080/rest/agenda?parametro1=valor1&amp;parametro2=valor2.</p>
+			<p>Para extraer estos parámetros de la petición contamos con la anotación:
+				<b>@QueryParam</b>, que la podemos utilizar como en el siguiente ejemplo:</p>
+<pre class="prettyprint" data-lang="java">
+public Response metodo(@QueryParam("parametro1") String valor1)
+</pre>
+			<p>En este caso, Jersey inyectará en el argumento valor1 el valor del
+				parámetro parametro1 recibido en la petición.</p>
+			<p><strong>Ejercicio:</strong> Lectura de parámetros de un formulario.</p>
+		</article>
+		</slide>
+
+        <!-- Creando la respuesta: La anotación @Produces y la clase Response -->
+        <slide>
+        <hgroup>
+            <h2>Creando la respuesta</h2>
+            <h2>La anotación @Produces</h2>
+        </hgroup>
+        <article>
+            <p>Para establecer el formato de la respuesta utilizamos la 
+                anotación <b>@Produces(MediaType.ALGUN_TIPO)</b>
+            <p>Existe una gran cantidad de formatos disponibles: texto, xml, json, html,
+                y un largo etcétera.</p>
+            <p>Por ejemplo, para indicar que un método devuelve texto plano, lo anotaríamos
+                del siguiente modo:</p>
+<pre class="prettyprint" data-lang="java">
+@Produces(MediaType.TEXT_PLAIN)
+</pre>
+        </article>
+        </slide>
+
+		<!-- Creando la respuesta: La anotación @Produces y la clase Response -->
+        <slide>
+        <hgroup>
+			<h2>Creando la respuesta</h2>
+			<h2>La clase Response</h2>
+        </hgroup>
+		<article>
+            <p>La clase <b>Response</b> es de gran utilidad para construir la respuesta
+                que se enviará al cliente.</p>
+            <p>Esta clase nos permite, entre otras cosas:</p>
+            <ul>
+                <li>Establecer el código de estado.</li>
+                <li>Establecer las cabeceras de las respuestas.</li>
+                <li>Establecer la entidad de la respuesta.</li>
+            </ul>
+            <p>Por ejemplo, para devolver un código de estado 200 OK hacemos:</p>
+<pre class="prettyprint" data-lang="java">
+return Response.ok(entrada).build();
+</pre>
+            <p>Fíjate que una vez establecidos todos los elementos de la respuesta
+                debemos hacer <b>build()</b>
+		</article>
+		</slide>
+
+		<!-- Resumen -->
+        <slide>
+        <hgroup>
+			<h2>Resumen</h2>
+        </hgroup>
+		<article>
+            <p>En este capítulo hemos visto lo relativamente sencillo que es 
+                definir nuevos recurso utilizando Jersey y cómo definir métodos
+                que respondan a peticiones GET.</p>
+            <p>Parte del trabajo de definición está basado en el uso de anotaciones.</p>
+            <p>Recuerda, en todo momento, usar adecuadamente los conceptos y propiedades 
+                REST.</p> 
+		</article>
+		</slide>
+
+		<slide class="backdrop"></slide>
+        
+    </slides>
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

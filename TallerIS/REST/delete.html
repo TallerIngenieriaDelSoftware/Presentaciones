@@ -1,0 +1,194 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>El método DELTE</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="../../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../../theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="../../js/slides" src="../../js/require-1.0.8.min.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28605511-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body style="opacity: 0">
+
+<!-- <slides class="layout-widescreen">-->
+<slides>
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="../../images/logo-uji.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title>Taller de Ingeniería del Software</h1>
+      <h2 data-config-subtitle>El método DELETE</h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+		<!-- Introducción -->
+        <slide>
+        <hgroup>
+			<h2>Introducción</h2>
+        </hgroup>
+		<article>
+			<p><b>DELETE</b> es el cuarto de los métodos HTTP que forman
+				la base de las aplicaciones de gestión basadas en operaciones
+				CRUD: Create, Retrieve, Update and Delete.</p>
+			<p>En este capítulo vamos a ver cuales son las características 
+				de este método y las facilidades que ofrece Jersey para 
+				definir un método que atienda peticiones <b>DELETE</b>.</p>
+			<p>Finalmente veremos la correspondencia entre los métodos 
+				HTTP vistos hasta este momento y las operaciones CRUD.</p>
+		</article>
+		</slide>
+		
+		<!-- Contenidos -->
+        <slide>
+        <hgroup>
+			<h2>Contenidos</h2>
+        </hgroup>
+		<article>
+			<ol>
+				<li>El método <b>DELETE</b>.</li>
+				<li>Aplicaciones con servicios CRUD.</li>
+			</ol>
+		</article>
+		</slide>
+		
+		<!-- El método DELETE -->
+        <slide>
+        <hgroup>
+			<h2>El método DELETE</h2>
+        </hgroup>
+		<article>
+			<p>El método <b>DELETE</b> nos sirve para eliminar recursos del
+				servidor.</p>
+			<p>El recurso a eliminar está identificado por la URI que recibe
+				la petición.</p>
+			<p>El cuerpo de la petición está vacío.</p>
+			<p>El método <b>DELETE</b> es idempotente.</p>
+			<p>El método <b>DELETE</b> no es ni seguro ni cacheable.</p>
+		</article>
+		</slide>
+
+		<!-- El método DELETE -->
+        <slide>
+        <hgroup>
+			<h2>El método DELETE</h2>
+        </hgroup>
+		<article>
+			<p>Los códigos de respuesta pueden ser:</p>
+			<ul>
+				<li>200 Ok. El cuerpo de la respuesta incluye una descripción
+					de lo ocurrido.</li>
+				<li>204 No content. Si el borrado se efectuó sin problemas.
+					El cuerpo de la respuesta está vacío.</li>
+				<li>202 Accepted. La petición está en curso. En esta caso
+					en la cabecera <b>Location</b> de la respuesta se indica
+					la URI para consultar el estado de la petición.</li>
+				<li>Si algo ha ido mal, el código de error correspondiente.</li>
+			</ul>
+			<p>Normalmente, el código de respuesta es <b>204 No content</b> para
+				indicar que el recurso se ha eliminado sin problemas.</p>
+		</article>
+		</slide>
+
+		<!-- El método DELETE -->
+        <slide>
+        <hgroup>
+			<h2>El método DELETE</h2>
+        </hgroup>
+		<article>
+			<p>De nuevo, Jersey pone a nuestra disposición una anotación
+				para indicar que un método atenderá peticiones <b>DELETE</b>.
+				</p>
+			<p>La anotación es <b>@DELETE</b>. En este caso, como ya conoces,
+				la anotación <b>@Path</b> para extraer una parte de la 
+				URI que recibe la petición te puede ser de utilidad.</p>
+		</article>
+		</slide>
+
+		<!-- Aplicaciones con servicios CRUD -->
+        <slide>
+        <hgroup>
+			<h2>Aplicaciones con servicios CRUD</h2>
+        </hgroup>
+		<article>
+			<p>En este punto del curso ya hemos visto cuatro métodos del protocolo
+				HTTP: <b>GET, POST, PUT</b> y <b>DELETE</b>.</p>
+			<p>Esto cuatro métodos se corresponden con las operaciones básicas
+				de las aplicaciones de gestión <b>CRUD</b>: Create, Retrieve, 
+				Update and Delete.</p>
+			<p>La correspondencia que se suele establecer entre los métodos del 
+				protocolo HTTP y las operaciones CRUD es la siguiente:</p>
+			<ul>
+				<li>Create &rarr; <b>POST</b>.</li>
+				<li>Retrieve &rarr; <b>GET</b>.</li>
+				<li>Update &rarr; <b>PUT</b>.</li>
+				<li>Delete &rarr; <b>DELETE</b>.</li>
+			</ul>
+			<p>Aunque ya sabes que para crear un nuevo recurso en el servidor
+				puedes utilizar tanto <b>PUT</b> como <b>POST</b>.</p>
+		</article>
+		</slide>
+
+		<!-- Resumen -->
+        <slide>
+        <hgroup>
+			<h2>Resumen</h2>
+        </hgroup>
+		<article>
+			<p>Como en el caso de los métodos HTTP vistos anteriormente, 
+				Jersey ofrece una anotación para indicar que un método Java 
+				atenderá peticiones <b>DELETE</b>.</p>
+			<p>Los cuatro métodos vistos hasta este momento constituyen el
+				corazón de las aplicaciones basadas en servicios CRUD.</p>
+		</article>
+		</slide>
+
+		<slide class="backdrop"></slide>
+        
+    </slides>
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

@@ -1,0 +1,646 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>El protocolo HTTP</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--This one seems to work all the time, but really small on ipad-->
+<!--<meta name="viewport" content="initial-scale=0.4">-->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" media="all" href="../../theme/css/default.css">
+<link rel="stylesheet" media="only screen and (max-device-width: 480px)"
+	href="../../theme/css/phone.css">
+<base target="_blank">
+<!-- This amazingness opens all links in a new tab. -->
+<script data-main="../../js/slides" src="../../js/require-1.0.8.min.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28605511-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body style="opacity: 0">
+
+	<!-- <slides class="layout-widescreen">-->
+	<slides> <slide class="title-slide segue nobackground">
+	<aside class="gdbar">
+		<img src="../../images/logo-uji.png">
+	</aside>
+	<!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+	<hgroup class="auto-fadein">
+		<h1 data-config-title>
+			Taller de Ingeniería del Software
+		</h1>
+		<h2 data-config-subtitle>El protocolo HTTP</h2>
+		<p data-config-presenter>
+			<!-- populated from slide_config.json -->
+		</p>
+	</hgroup>
+	</slide> <!-- Introducción --> <slide>
+	<hgroup>
+		<h2>Introducción</h2>
+	</hgroup>
+	<article>
+		<p>Sobre el protocolo HTTP descansa la web.</p>
+		<p>Conocer el protocolo HTTP es fundamental para desarrollar
+			aplicaciones con la arquitectura REST.</p>
+		<p>Quizás este es una de los capítulos más importantes del curso.</p>
+		<p>En este capítulo vamos a ver, con detalle, las características
+			de este protocolo.</p>
+	</article>
+	</slide> <!-- Contenidos --> <slide>
+	<hgroup>
+		<h2>Contenidos</h2>
+	</hgroup>
+	<article>
+		<ol>
+			<li>Características.</li>
+			<li>La petición.</li>
+			<ol>
+				<li>La petición.</li>
+				<li>Métodos de la petición.</li>
+				<li>Recursos.</li>
+				<li>Protocolo y su versión.</li>
+				<li>Cabeceras de la petición.</li>
+				<li>Cuerpo de la petición.</li>
+			</ol>
+			<li>La respuesta.</li>
+			<ol>
+				<li>La respuesta.</li>
+				<li>Cabeceras de la respuesta.</li>
+				<li>Cuerpo de la respuesta.</li>
+			</ol>
+		</ol>
+	</article>
+	</slide> <!-- Características --> <slide>
+	<hgroup>
+		<h2>Características</h2>
+	</hgroup>
+	<article>
+		<ul>
+			<li>HTTP: Hypertext Transfer Protocol.</li>
+			<li>Pertenece a la capa de aplicación del modelo OSI.</li>
+			<li>Paradigma petición (cliente) - respuesta (servidor).</li>
+			<li>Sin estado.</li>
+		</ul>
+	</article>
+	</slide> <!-- La petición --> <!-- La petición --> <slide>
+	<hgroup>
+		<h2>La petición</h2>
+	</hgroup>
+	<article>
+		<p>Un cliente realiza una petición a un servidor.</p>
+		<p>La petición está formada por:</p>
+		<ol>
+			<li>Método.</li>
+			<li>Recurso (parámetros opcionales).</li>
+			<li>Protocolo y versión.</li>
+			<li>Cabeceras.</li>
+			<li>Cuerpo de la petición (entidad).</li>
+		</ol>
+<pre class="prettyprint">
+<b>GET</b> / HTTP/1.1
+User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 
+	OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3
+Host: rubi.dlsi.uji.es
+Accept: */*
+
+</pre>
+	</article>
+	</slide> <!-- La petición --> <!-- Métodos de la petición --> <slide>
+	<hgroup>
+		<h2>La petición</h2>
+		<h2>Métodos de la petición</h2>
+	</hgroup>
+	<article>
+		<p>El protocolo HTTP dispone de los siguientes métodos:</p>
+		<div class="columns-2">
+		<ol>
+			<li>GET.</li>
+			<li>POST.</li>
+			<li>PUT.</li>
+			<li>DELETE.</li>
+			<li>HEAD.</li>
+			<li>OPTIONS.</li>
+			<li>TRACE.</li>
+			<li>CONNET.</li>
+			<li>PATCH.</li>
+		</ol>
+		</div>
+		<p>Sea cual sea el recurso en el que estamos interesados, siempre disponemos del mismo
+		  conjunto de métodos para acceder a él: <i>Interfaz uniforme.</i></p>
+	<footer class="source">Allamaraju, Apéndice C</footer>
+	</article>
+	</slide>
+	
+    <!-- La petición -->
+    <!-- Métodos de la petición -->
+    <slide>
+    <hgroup>
+        <h2>La petición</h2>
+        <h2>Métodos de la petición</h2>
+    </hgroup>
+    <article>
+        <p><b>GET</b> solicita la representación de un recurso identificado por una URL.</p> 
+        <p><b>Petición</b>: Cabeceras sin cuerpo.</p>
+        <p><b>Respuesta</b>: La representación del recurso identificado con la URL va en
+            el cuerpo de la respuesta. Las cabeceras Content-Type, Content-Length
+            y Content-Language hacen referencia a la representación del recurso solicitado.</p>
+    </article>
+    </slide>
+
+    <!-- La petición -->
+    <!-- Métodos de la petición -->
+    <slide>
+    <hgroup>
+        <h2>La petición</h2>
+        <h2>Métodos de la petición</h2>
+    </hgroup>
+    <article>
+        <p><b>POST</b> envía una representación en el cuerpo de la petición al recurso
+            identificado por una URL que será la encargada de gestionar la petición.</p>
+        <p>Las acciones típicas que se realizan mediante un POST es la creación de nuevos
+            recursos, la modificación de recursos existente, u otras modificaciones 
+            en uno o varios recursos.</p>
+        <p><b>Petición</b>: Cabecera y cuerpo con la representación del recurso.</p>
+        <p><b>Respuesta</b>: La representación del recurso va en el cuerpo de la respuesta
+            con el código 201 Created. Si la URI devuelta es distinta a la URI solicitada,
+            entonces se debe incluir la cabecera Location con la URI del nuevo recurso.</p>
+    </article>
+    </slide>
+
+    <!-- La petición -->
+    <!-- Métodos de la petición -->
+    <slide>
+    <hgroup>
+        <h2>La petición</h2>
+        <h2>Métodos de la petición</h2>
+    </hgroup>
+    <article>
+        <p><b>PUT</b> envía una representación en el cuerpo de la petición al recurso identificado 
+            por una URI. El verbo PUT está concebido para actualizar un recurso existe o crear 
+            uno nuevo si el cliente especifica la nueva URI. La diferencia fundamental entre PUT 
+            y POST es justamente la URI de la petición. La URI en un POST identifica el recurso 
+            que gestiona la petición. Por ejemplo el recursos <strong>authors</strong> gestiona la colección de 
+            autores y permite la creación de un nuevo. La URI en PUT se refiere a la 
+            representación del recurso que va en el cuerpo de la petición.</p>
+        <p><b>Petición</b>: Cabecera y cuerpo con la representación del recurso.</p>
+        <p><b>Respuesta</b>: En el caso de una modificación, la representación del recurso
+            puede ir en el cuerpo de la respuesta dependiendo del código de respuesta
+            utilizado: 200 OK o 204 No Content. En el caso de crear un recurso, la
+            respuesta es como en una petición POST: 201 Created + Location.</p>
+    </article>
+    </slide>
+
+    <!-- La petición -->
+    <!-- Métodos de la petición -->
+    <slide>
+    <hgroup>
+        <h2>La petición</h2>
+        <h2>Métodos de la petición</h2>
+    </hgroup>
+    <article>
+        <p><b>DELETE</b> elimina el recurso identificado por la URI de la petición.</p> 
+        <p><b>Petición</b>: Cabecera sin cuerpo.</p> 
+        <p><b>Respuesta</b>: Los códigos de respuesta con éxito pueden ser: 
+	        200 OK, si el estado de la acción va en el cuerpo de la respuesta y contiene una descripción
+	        del estado de la acción; 204 No Content si no hay cuerpo; 202 Accepted
+			si la acción está en cola. Este último caso permite realizar borrados
+			asíncronas: ante un DELETE el servidor devuelve el código 202 y crea un
+			nuevo recurso que representa el estado de la acción de borrado. El cliente
+			deberá realizar peticiones GET para consultar el proceso de eliminación. 
+			En cualquier caso, tras una respuesta  ́exitosa, el recurso ya no
+			esta ́ disponible para el cliente. Si algo va mal, por ejemplo si no existe el
+			recurso especificado, el servidor devuelve un código 404 Not Found.</p>
+    </article>
+    </slide>
+
+    <!-- La petición -->
+    <!-- Métodos de la petición -->
+    <slide>
+    <hgroup>
+        <h2>La petición</h2>
+        <h2>Métodos de la petición</h2>
+    </hgroup>
+    <article>
+        <p><b>HEAD</b> es idéntico a un GET pero únicamente se recuperan las cabeceras del recurso
+             identificado por una URL.</p>
+        <p><b>Petición</b>: Cabeceras sin cuerpo.</p>
+        <p><b>Respuesta</b>: Cabeceras sin cuerpo.</p>
+    </article>
+    </slide>
+
+    <!-- La petición -->
+    <!-- Métodos de la petición -->
+    <slide>
+    <hgroup>
+        <h2>La petición</h2>
+        <h2>Métodos de la petición</h2>
+    </hgroup>
+    <article>
+        <p><b>OPTIONS</b> permite averiguar las acciones HTTP que soporta un determinado recurso 
+	        o simplemente realizar un ping contra el servidor cuando no se especifica 
+	        un recurso en concreto. Por ejemplo, un cliente que quiere empezar una
+	        interacción con un recurso puede realizar una petición OPTIONS para saber qué 
+	        acciones son las permitidas. Si, pongamos por caso, el servidor responde 
+	        únicamente con el verbo GET, sabemos que dicho recurso únicamente es de lectura.</p>
+        <p><b>Petición</b>: Cabeceras sin cuerpo. Si se especifica un asterisco (*) en vez de 
+            una localización de un recurso concreto, entonces únicamente se esta ́ haciendo 
+            un ping para comprobar el estado del servidor.</p>
+        <p><b>Respuesta</b>: Sin cuerpo por defecto aunque el servidor puede especificar
+            un mensaje que haga referencia a las opciones de comunicación. La cabecera
+            Allow indica los verbos soportados.</p>
+    </article>
+    </slide>
+
+	<!-- La petición -->
+	<!-- Métodos de la petición -->
+	<slide>
+	<hgroup>
+		<h2>La petición</h2>
+		<h2>Métodos de la petición</h2>
+	</hgroup>
+	<article>
+		<p>
+			Se dice que un método es <i>SEGURO</i> si no modifica el estado del
+			servidor.
+		</p>
+		<p>
+			Se dice que un método es <i>IDEMPOTENTE</i> si al hacer peticiones
+			sucesivas el resultado es el mismo que si sólo se hubiese hecho una.
+		</p>
+		<p>
+			Se dice que un método es <i>CACHEABLE</i> si se puede utilizar
+			estrategias de caching sobre él.
+		</p>
+	</article>
+	</slide>
+	
+	<!-- La petición -->
+	<!-- Métodos de la petición -->
+	<slide>
+	<hgroup>
+		<h2>La petición</h2>
+		<h2>Métodos de la petición</h2>
+	</hgroup>
+	<article>
+		<table>
+			<thead>
+				<tr>
+					<th>Método</th>
+					<th>Seguro</th>
+					<th>Idempotente</th>
+					<th>Cacheable</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>HEAD</td>
+					<td>SI</td>
+					<td>SI</td>
+					<td>SI</td>
+				</tr>
+				<tr>
+					<td>GET</td>
+					<td>SI</td>
+					<td>SI</td>
+					<td>SI</td>
+				</tr>
+				<tr>
+					<td>POST</td>
+					<td>NO</td>
+					<td>NO</td>
+					<td>NO</td>
+				</tr>
+				<tr>
+					<td>PUT</td>
+					<td>NO</td>
+					<td>SI</td>
+					<td>NO</td>
+				</tr>
+				<tr>
+					<td>DELETE</td>
+					<td>NO</td>
+					<td>SI</td>
+					<td>NO</td>
+				</tr>
+				<tr>
+					<td>OPTIONS</td>
+					<td>SI</td>
+					<td>SI</td>
+					<td>NO</td>
+				</tr>
+			</tbody>
+		</table>
+	</article>
+	</slide> 
+	
+	<!-- La petición -->
+	<!-- Recursos -->
+	<slide>
+	<hgroup>
+		<h2>La petición</h2>
+		<h2>Recursos</h2>
+	</hgroup>
+	<article>
+		<p>Recurso es aquello a lo que se quiere acceder, por ejemplo, un
+			página web.</p>
+		<p>El recurso se indica a continuación del método.</p>
+<pre class="prettyprint">
+GET <b>/</b> HTTP/1.1
+User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 
+	OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3
+Host: rubi.dlsi.uji.es
+Accept: */*
+
+</pre>
+	</article>
+	</slide>
+	
+	<!-- La petición -->
+	<!-- Protocolo y su versión -->
+	<slide>
+	<hgroup>
+		<h2>La petición</h2>
+		<h2>Protocolo y su versión</h2>
+	</hgroup>
+	<article>
+	<p>El protocolo va a continuación del recurso solicitado, junto con su versión.</p>
+<pre class="prettyprint">
+GET / <b>HTTP/1.1</b>
+User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 
+	OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3
+Host: rubi.dlsi.uji.es
+Accept: */*
+
+</pre>
+	</article>
+	</slide>
+	
+	<!-- La petición -->
+	<!-- Cabeceras de la petición -->
+	<slide>
+	<hgroup>
+		<h2>La petición</h2>
+		<h2>Cabeceras de la petición</h2>
+	</hgroup>
+	<article>
+		<p>Las cabeceras son meta-información útil tanto para el cliente
+			como para el servidor.</p>
+		<p>Mediante las cabeceras de la petición se puede especificar
+			cosas tales como los lenguajes de preferencia del cliente, o los
+			formatos admitidos por el cliente.</p>
+<pre class="prettyprint">
+GET / HTTP/1.1
+<b>User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 
+	OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3
+Host: rubi.dlsi.uji.es
+Accept: */*</b>
+
+</pre>
+	<footer class="source">Richardson, Apendice C.</footer>
+	</article>
+	</slide> 
+	
+    <!-- La petición -->
+    <!-- Cabeceras de la petición -->
+    <slide>
+    <hgroup>
+        <h2>La petición</h2>
+        <h2>Cabeceras de la petición</h2>
+    </hgroup>
+    <article>
+        <p>Existen cuatro grupos de cabeceras:</p>
+        <ul>
+            <li>Cabeceras generales: pueden ir tanto en la petición como en la respuesta.</li>
+            <li>Cabeceras de petición: sólo aparecen en la petición.</li>
+            <li>Cabeceras de respuesta: sólo aparecen en la respuesta.</li>
+            <li>Cabeceras de entidad: relativa a la representación de la entidad (cuerpo) tanto 
+                de la petición como de la respuesta.</li>
+        </ul>
+    </article>
+    </slide>
+
+	<!-- La petición -->
+	<!-- Cuerpo de la petición -->
+	<slide>
+	<hgroup>
+		<h2>La petición</h2>
+		<h2>Cuerpo de la petición</h2>
+	</hgroup>
+	<article>
+		<p>El cuerpo de la petición contiene las entidades que serán
+			enviadas al servidor.</p>
+		<p>Una entidad puede ser una descripción de un recurso que se
+			desea actualizar, en formato XML por ejemplo.</p>
+	</article>
+	</slide>
+	
+	<!-- La repuesta -->
+	<!-- La respuesta -->
+	<slide>
+	<hgroup>
+		<h2>La respuesta</h2>
+	</hgroup>
+	<article>
+		<p>La respuesta es lo que envía el servidor al cliente como
+			resultado de su petición.</p>
+		<p>La respuesta está formada por:</p>
+		<ol>
+			<li>El protocolo de respuesta y su versión.</li>
+			<li>El código de estado.</li>
+			<li>Cabeceras de la respuesta.</li>
+			<li>Cuerpo de la respuesta.</li>
+		</ol>
+	</article>
+	</slide>
+	
+	<!-- La repuesta -->
+	<!-- El protocolo y su versión -->
+	<slide>
+	<hgroup>
+		<h2>La respuesta</h2>
+		<h2>El protocolo y su versión</h2>
+	</hgroup>
+	<article>
+		<p>Al igual que en el caso de la petición, en la respuesta se
+			indica el protocolo utilizado y su versión.</p>
+<pre class="prettyprint">
+<b>HTTP/1.1</b> 200 OK
+Date: Wed, 25 Jul 2012 14:10:03 GMT
+Server: Apache/2.2.17 (Ubuntu)
+Last-Modified: Thu, 09 Feb 2012 10:28:52 GMT
+ETag: "381e31-c2-4b8857a81b1d1"
+Accept-Ranges: bytes
+Content-Length: 194
+Vary: Accept-Encoding
+Content-Type: text/html
+X-Pad: avoid browser bug
+
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h1&gt;/body&gt;&lt;/html&gt;<br/>
+</pre>
+	</article>
+	</slide>
+	
+	<!-- La repuesta -->
+	<!-- El código de estado -->
+	<slide>
+	<hgroup>
+		<h2>La respuesta</h2>
+		<h2>El código de estado</h2>
+	</hgroup>
+	<article>
+		<p>Los códigos de estado informan del resultado de la transacción.</p>
+<pre class="prettyprint">
+HTTP/1.1 <b>200 OK</b>
+Date: Wed, 25 Jul 2012 14:10:03 GMT
+Server: Apache/2.2.17 (Ubuntu)
+Last-Modified: Thu, 09 Feb 2012 10:28:52 GMT
+ETag: "381e31-c2-4b8857a81b1d1"
+Accept-Ranges: bytes
+Content-Length: 194
+Vary: Accept-Encoding
+Content-Type: text/html
+X-Pad: avoid browser bug
+
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h1&gt;/body&gt;&lt;/html&gt;<br/>
+</pre>
+	<footer class="source">Richardson, Apéndice B.</footer>
+	</article>
+	</slide>
+	
+    <!-- La repuesta -->
+    <!-- El código de estado -->
+    <slide>
+    <hgroup>
+        <h2>La respuesta</h2>
+        <h2>El código de estado</h2>
+    </hgroup>
+    <article>
+        <p>Los códigos de estado se agrupan por <i>severidad</i>. El primer número del código
+            de estado hace referencia al grupo al que pertenece:</p>
+        <ul>
+            <li>1xx: Código de información. Se utiliza para negociación con el servidor.</li>
+            <li>2xx: Código de éxito.</li>
+            <li>3xx: Código de reidrección.</li>
+            <li>4xx: Código de error por parte del cliente.</li>
+            <li>5xx: Código de error por parte del servidor.</li>
+        </ul>
+    </article>
+    </slide>
+
+	<!-- La repuesta -->
+	<!-- Cabeceras de la respuesta -->
+	<slide>
+	<hgroup>
+		<h2>La respuesta</h2>
+		<h2>Cabeceras de la respuesta</h2>
+	</hgroup>
+	<article>
+		<p>Al igual que en el caso de la petición, las cabeceras de la
+			respuesta contienen meta-información sobre la respuesta, como por
+			ejemplo, el lenguaje utilizado, su formato, o la longitud de la
+			repuesta en bytes.</p>
+<pre class="prettyprint">
+HTTP/1.1 200 OK
+<b>Date: Wed, 25 Jul 2012 14:10:03 GMT
+Server: Apache/2.2.17 (Ubuntu)
+Last-Modified: Thu, 09 Feb 2012 10:28:52 GMT
+ETag: "381e31-c2-4b8857a81b1d1"
+Accept-Ranges: bytes
+Content-Length: 194
+Vary: Accept-Encoding
+Content-Type: text/html
+X-Pad: avoid browser bug</b>
+
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h1&gt;/body&gt;&lt;/html&gt;<br/>
+</pre>
+	</article>
+	</slide>
+	
+	<!-- La repuesta -->
+	<!-- Cuerpo de la respuesta -->
+	<slide>
+	<hgroup>
+		<h2>La respuesta</h2>
+		<h2>Cuerpo de la respuesta</h2>
+	</hgroup>
+	<article>
+		<p>El cuerpo de la respuesta, también llamado entidad, contiene el
+			recurso solicitado, que puede ser una página web en formato html, una
+			descripción de un recurso en formato XML, o un fichero pdf.</p>
+<pre class="prettyprint">
+HTTP/1.1 200 OK
+Date: Wed, 25 Jul 2012 14:10:03 GMT
+Server: Apache/2.2.17 (Ubuntu)
+Last-Modified: Thu, 09 Feb 2012 10:28:52 GMT
+ETag: "381e31-c2-4b8857a81b1d1"
+Accept-Ranges: bytes
+Content-Length: 194
+Vary: Accept-Encoding
+Content-Type: text/html
+X-Pad: avoid browser bug
+
+<b>&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h1&gt;/body&gt;&lt;/html&gt;<br/></b>
+</pre>
+	</article>
+	</slide>
+	
+	<!-- Resumen -->
+	<!-- Introducción -->
+	<slide>
+	<hgroup>
+		<h2>Resumen</h2>
+	</hgroup>
+	<article>
+		<p>En este capítulo hemos visto con detalle el protocolo HTTP 1.1.</p>
+		<p>Hemos visto la estructura de las peticiones y las respuestas.</p>
+		<p>Hemos visto el significado de algunas de las cabeceras más usadas,
+			tanto en las peticiones como en las respuestas.</p>
+		<p>Hemos visto los métodos más comunes del protocolo, su significado
+			y en qué casos debemos usarlos.</p>
+		<p>Recuerda que conocer el protocolo HTTP con profundidad y propiedad,
+			hará que las aplicaciones que desarrolles se integren perfectamente
+			en el mundo Web.</p> 
+	</article>
+	</slide>
+	
+	<slide class="backdrop"></slide> </slides>
+	<script>
+	
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+	<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

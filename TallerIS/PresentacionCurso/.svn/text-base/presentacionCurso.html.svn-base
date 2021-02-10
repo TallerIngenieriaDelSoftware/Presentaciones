@@ -1,0 +1,498 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Presentación del curso</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="../../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../../theme/css/phone.css">
+  <link rel="stylesheet" media="all" href="../../css/miEstilo.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="../../js/slides" src="../../js/require-1.0.8.min.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28605511-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+<body style="opacity: 0">
+    <!-- <section class='slides layout-regular '>-->
+    <slides>
+      <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="../../images/logo-uji.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle>Presentación del curso</h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+    
+        <!-- Yo -->
+        <slide>
+        <hgroup>
+			<h2>Yo</h2>
+        </hgroup>
+		<article>
+            <p>Óscar Belmonte Fernández.</p>
+            <p>Despacho <a href="http://geotec.dlsi.uji.es:8080/Locations/offices/TI1203">TI-1203.</a></p>
+            <p>Página web: <a href="http://www3.uji.es/~belfern">http://www3.uji.es/~belfern</a></p>
+            <p>Blog: <a href="http://blogs.uji.es/encuentrosjava/">http://blogs.uji.es/encuentrosjava/</a></p>
+            <p>Encuentros Java: <a href="http://encuentrosjava.uji.es/">http://encuentrosjava.uji.es/</a></p>
+            <p>Correo electrónico: <a href="mailto:oscar.belmonte@uji.es">oscar.belmonte@uji.es</a></p>
+            <p><b>Tutorías</b></p>
+            <p>Lunes: 15:00 - 16:30.</p>
+            <p>Martes: 15:00 - 16:30.</p>
+        </article>
+        </slide>
+        
+        <!-- Estructura -->
+        <slide>
+        <hgroup>
+			<h2>Estructura</h2>
+        </hgroup>
+		<article>
+            <p>Asignatura obligatoria.</p>
+            <p>Segundo curso. Segundo semestre.</p>
+            <p>6 créditos (150 h.) &rarr; 60 presenciales, 90 NO presenciales.</p> 
+        </article>
+        </slide>
+        
+        <!-- Horario -->
+        <slide>
+        <hgroup>
+            <h2>Horario</h2>
+        </hgroup>
+        <article>
+            <p><b>Tal y como aparece en el lleu</b></p>
+            <p>Grup: A LA1 Dimarts 12:30: Hi ha classe totes les setmanes, excepte: 29/01.</p>
+			<p>Grup: A TE1 Dilluns 10:30: Hi ha classe totes les setmanes, excepte: 13/05.</p>
+			<p>Grup: A TE1 Dimarts 08:30: Hi ha classe totes les setmanes, excepte: 07/05, 14/05.</p> 
+			<p>Grup: A LA2 Dimarts 10:30: Hi ha classe totes les setmanes, excepte: 29/01.</p>
+			<p>Grup: A LA3 Dimarts 10:30: Hi ha classe totes les setmanes, excepte: 29/01.</p>
+        </article>
+        </slide>
+        <!-- Profesores -->
+        <slide>
+        <hgroup>
+			<h2>Profesores</h2>
+        </hgroup>
+		<article>
+            <p><b>Teoría:</b></p>
+            <p>TE1 &rarr; Óscar Belmonte Fernández.</p>
+            <p>TE2 &rarr; Víctor Jiménez Pelayo.</p>
+            <p><b>Prácticas:</b></p>
+            <p>LA1, LA2 &rarr; Jorge Badenas Carpio.</p>
+            <p>LA3 &rarr; Óscar Belmonte Fernández.</p>
+            <p>LA4 &rarr; Víctor Jiménez Pelayo.</p>
+        </article>
+        </slide>        
+        
+        <!-- Como se relaciona con otras asignaturas -->
+        <slide>
+        <hgroup>
+            <h2>Como se relaciona con otras asignaturas</h2>
+        </hgroup>
+        <article>
+            <p><b>Programación I</b>: Definición de clases, acceso a ficheros de texto.</p>
+            <p><b>Programación II</b>: Introducción a la POO, entrada/salida.</p>
+            <p><b>Estructura de datos</b>: Colecciones, genéricos.</p>
+            <p><b>Programación Avanzada</b></p>
+            <p>Cualquier otra asignatura que implique programación.</p>
+        </article>
+        </slide>        
+        
+        <!-- Temario -->
+        <slide>
+        <hgroup>
+			<h2>Temario</h2>
+        </hgroup>
+		<article>
+            <p><b>Teoría</b></p>
+            <ol>
+                <li>Polimorfismo y sobrecarga.</li>
+                <li>Patrones de diseño.</li>
+                <li>Interfaces de usuario.</li>
+            </ol>
+            <p><b>Prácticas</b></p>
+            <ol>
+                <li>Calidad del software.</li>
+                <li>Polimorfismo y sobrecarga.</li>
+				<li>Patrones de diseño.</li>
+				<li>Interfaces de usuario.</li>
+            </ol>
+        </article>
+        </slide>
+
+        <!-- Metodología -->
+        <slide>
+        <hgroup>
+			<h2>Metodología</h2>
+        </hgroup>
+		<article>
+            <p><b>Teoría:</b></p>
+            <p>Presentación de conceptos teóricos.</p>
+            <p>Resolución de ejercicios.</p>
+            <p><b>Prácticas:</b></p>
+            <p>Desarrollo de un proyecto.</p>
+        </article>
+        </slide>
+
+        <!-- Bibliografía -->
+        <slide>
+        <hgroup>
+			<h2>Bibliografía</h2>
+        </hgroup>
+		<article>
+            <h3>Bibliografía</h3>
+            <p>Los contenidos del curso centralizados en <a href="https://aulavirtual.uji.es/course/view.php?id=26903">
+                aulavirtual</a></p>
+            <p><b>Bibliografía básica:</b></p>
+            <ol>
+                <li><a href="http://cataleg.uji.es/search~S1*cat?/Xbig+java&searchscope=1&SORT=D/Xbig+java&searchscope=1&SORT=D&SUBKEY=big+java/1%2C4%2C4%2CB/frameset&FF=Xbig+java&searchscope=1&SORT=D&1%2C1%2C">
+                    Big Java</a></li>
+                <li><a href="http://cataleg.uji.es/search~S1*cat?/Xhead+first+design&searchscope=1&SORT=D/Xhead+first+design&searchscope=1&SORT=D&SUBKEY=head%20first%20design/1%2C2%2C2%2CB/frameset&FF=Xhead+first+design&searchscope=1&SORT=D&1%2C1%2C">
+                    Head first design Patterns.</a></li>
+                <li><a href="http://www3.uji.es/~belfern/docencia.html">
+                    Desarrollo de proyectos informáticos con tecnología Java</a></li>
+            </ol>
+            <p><b>Bibliografía complementaria:</b></p>
+            <ol>
+                <li><a href="http://cataleg.uji.es/search~S1*cat/?searchtype=X&searcharg=el+lenguaje+de+programaci%C3%B3n+java&searchscope=1&sortdropdown=-&SORT=DZ&extended=0&SUBMIT=Cerca&searchlimits=&searchorigarg=Xhead+first+java%26SORT%3DDZ">
+                    El lenguaje de programación Java</a>.</li>
+                <li><a href="http://cataleg.uji.es/search~S1*cat?/Xhead+first+java&searchscope=1&SORT=DZ/Xhead+first+java&searchscope=1&SORT=DZ&extended=0&SUBKEY=head%20first%20java/1%2C3%2C3%2CB/frameset&FF=Xhead+first+java&searchscope=1&SORT=DZ&1%2C1%2C">
+                    Head first Java</a>.</li>
+                <li><a href="http://cataleg.uji.es/search~S1*cat?/Xpatrones+de+dise{u00F1}o&searchscope=1&SORT=DZ/Xpatrones+de+dise{u00F1}o&searchscope=1&SORT=DZ&extended=0&SUBKEY=patrones%20de%20dise%C3%B1o/1%2C8%2C8%2CB/frameset&FF=Xpatrones+de+dise{u00F1}o&searchscope=1&SORT=DZ&3%2C3%2C">
+                    Patrones de diseño.</a>.</li>
+            </ol>
+        </article>
+        </slide>
+
+        <!-- Sistema de evaluación -->
+        <slide>
+        <hgroup>
+			<h2>Sistema de evaluación</h2>
+        </hgroup>
+		<article>
+            <table>
+                <tbody>
+                    <tr><td>Evaluación continua</td><td>Una prueba escrita al final de cada bloque de teoría</td><td>40%</td></tr>
+                    <tr><td>Evaluación de prácticas</td><td></td><td>20%</td></tr>
+                    <tr><td>Examen</td><td>Prueba escrita</td><td>40%</td></tr>
+                </tbody>
+            </table>
+            <p><b>Criterio de superación de la asignatura:</b></p>
+            <p>Para aprobar la asignatura es necesario obtener 
+                5 o más puntos sobre 10 en el promedio ponderado 
+                de esas tres partes, con los pesos indicados anteriormente 
+                (que vienen establecidos en el plan de estudios). 
+                Además, se exige una nota mínima de 4 en cada una de esas 
+                tres partes para aprobar la asignatura. Si la nota de cada 
+                una de esas tres partes es mayor o igual que 4, la nota 
+                final en actas será la nota media ponderada. 
+                Si la nota de alguna de esas tres partes es menor que 4, 
+                la nota final en actas será el mínimo valor entre la nota 
+                media ponderada y 4.
+        </article>
+        </slide>
+
+        <!-- Sistema de evaluación -->
+        <slide>
+        <hgroup>
+            <h2>Sistema de evaluación</h2>
+        </hgroup>
+        <article>
+            <p><b>Criterio de superación de la asignatura:</b></p>
+            <p>Constarán en actas como presentados en cada convocatoria 
+                aquellos alumnos que se presenten al examen final correspondiente. 
+                Los estudiantes que hayan realizado pruebas de evaluación continua 
+                de teoría y/o de prácticas pero no se presenten al examen, 
+                figurarán en actas como "No Presentado".</p>
+            <p>En la segunda convocatoria del curso no será posible mejorar 
+	            las notas de evaluación continua de teoría y prácticas obtenidas 
+	            durante el curso, solamente se realizará un nuevo examen final y 
+	            el peso de ese examen seguirá siendo del 40 % en la nota final. 
+	            No será necesario haber realizado el examen de la primera convocatoria 
+	            para poder presentarse al de la segunda.</p>
+	    </article>
+        </slide>
+
+        <!-- Sistema de evaluación -->
+        <slide>
+        <hgroup>
+            <h2>Sistema de evaluación</h2>
+        </hgroup>
+        <article>
+            <p><b>Evaluación contínua.</b></p>
+            <table>
+                <tr><td>Control</td><td>Fecha</td><td>Hora</td></tr>
+                <tr><td>Primero</td><td>11/3/2013</td><td>9:30</td></tr>
+                <tr><td>Segundo</td><td>15/4/2013</td><td>8:30</td></tr>
+                <tr><td>Tercer</td><td>6/5/2013</td><td>9:30</td></tr>
+            </table>
+            <p>Todos los controles tienen el mismo peso en la nota final.</p>
+        </article>
+        </slide>
+        
+        
+        <!-- Sistema de evaluación -->
+        <slide>
+        <hgroup>
+			<h2>Sistema de evaluación</h2>
+        </hgroup>
+		<article>
+            <p><b>Evaluación prácticas.</b></p>
+            <table>
+                <tr><td>Práctica 0</td><td colspan="2">No puntúa.</td></tr>
+                <tr><td>Práctica 1</td><td>Apto / NO Apto</td><td>0.4 puntos.</td></tr>
+                <tr><td>Práctica 2</td><td>Apto / NO Apto</td><td>0.3 puntos.</td></tr>
+                <tr><td>Práctica 3</td><td>Apto / NO Apto</td><td>0.3 puntos.</td></tr>
+                <tr><td colspan="2">TOTAL P1+P2+P3</td><td><b>Hasta 1 punto.</b></td></tr>
+                <tr><td colspan="2">Entrega final (P1+P2+P3)</td><td><b>Hasta 1 punto.</b></td></tr>
+                <tr><td colspan="2"><b>TOTAL PRÁCTICAS</b></td><td><b>Hasta 2 puntos.</b></td></tr>
+            </table>
+        </article>
+        </slide>
+
+        <!-- Sistema de evaluación -->
+        <slide>
+        <hgroup>
+            <h2>Sistema de evaluación</h2>
+        </hgroup>
+        <article>
+            <p><b>Exámen</b></p>
+            <p>Día 31/5/2013</p>
+        </article>
+        </slide>
+
+        <!-- Cuestiones previas -->
+        <slide>
+        <hgroup>
+			<h2>Cuestiones previas</h2>
+        </hgroup>
+		<article>
+            <p>Por favor, contesta al cuestionario que te voy a pasar.</p>
+            <p>El cuestionario es totalmente anónimo.</p>
+            <div class="build"><p>Échale un vistazo a este 
+                <a href="http://www.ted.com/talks/lang/en/sir_ken_robinson_bring_on_the_revolution.html">
+                vídeo</a>.</p></div>
+        </article>
+        </slide>
+        
+        <!-- ¿Qué hace este método? -->
+        <slide>
+        <hgroup>
+            <h2>¿Qué hace este método?</h2>
+        </hgroup>
+        <article>
+            <p>Lee con detenimiento el siguiente fragmento de código:</p>
+<pre class="prettyprint" data-lang="Java">
+int[] res() {
+    int[] r = new int[2];
+    for(P p: ps)
+        if(p.s.equals("xx"))
+            r[0]++;
+        else if(p.s.equals("xy"))
+            r[1]++;
+    return r;
+}
+</pre>
+            <p>... e intenta adivinar qué hace.</p>
+        </article>
+        </slide>
+        
+        <!-- ¿Qué hace este método? -->
+        <slide>
+        <hgroup>
+            <h2>¿Qué hace este método?</h2>
+        </hgroup>
+        <article>
+            <p>Lee ahora este método:</p>
+<pre class="prettyprint" data-lang="Java">
+    ContadorSexos cuentaPersonaPorSexo() {
+        ContadorSexos contador = new ContadorSexos();
+        for(Persona persona: personas)
+            if(persona.isHombre())
+                contador.incrementaHombres();
+            else if(persona.isMujer())
+                contador.incrementaMujeres();
+        return contador;
+    }
+</pre>
+            <p>¿Qué hace?</p>
+            <div class="build">
+                <p>Si, los dos métodos hacen lo mismo.</p>
+            </div>
+            <div class="source">Inspirado en un ejemplo de <b>Clean Code</b> 
+                de Robert C. Martin.</div>
+        </article>
+        </slide>
+        
+        <!-- Otros de mis objetivos en la asignatura -->
+        <slide>
+        <hgroup>
+            <h2>Otros de mis objetivos en la asignatura</h2>
+        </hgroup>
+        <article>
+            <ul class="build">
+                <li>Que adquiráis buenos hábitos de programador.</li>
+                <li>Que lleguéis a escribir código que sea fácil de leer.</li>
+                <li>Que desarrolléis la intuición sobre POO.</li>
+                <li>Cualquier otra cosa alrededor de la programación que surja.</li>
+            </ul>
+        </article>
+        </slide>
+        
+        <!-- Qué es para mi la programación -->
+        <slide>
+        <hgroup>
+            <h2>Qué es para mi la programación</h2>
+        </hgroup>
+        <article>
+            <p>Ante todo, una actividad muy creativa.</p>
+            <p class="centrado"><img alt="Gernika" src="imagenes/guernika.jpg" style="width: 800px"></p>
+            <div class="source">http://www.xtec.cat/~jarrimad/contemp/picasso.html</div>
+        </article>
+        </slide>
+
+        <!-- Qué es para mi la programación -->
+        <slide>
+        <hgroup>
+            <h2>Qué es para mi la programación</h2>
+        </hgroup>
+        <article>
+            <p>Échale un vistazo a este libro.</p>
+            <p class="centrado"><img alt="Out of our minds" src="imagenes/outOfOurMinds.jpg" style="height: 400px"></p>
+            <div class="source">http://sirkenrobinson.com/skr/out-of-our-minds</div>
+        </article>
+        </slide>
+
+        <!-- Qué es para mi la programación -->
+        <slide>
+        <hgroup>
+            <h2>Qué es para mi la programación</h2>
+        </hgroup>
+        <article>
+            <p>¿Pero de verdad que no hace falta una creatividad enorme para
+                descubrir la teoría de la relatividad?</p>
+            <p class="centrado"><img alt="Relatividad" src="imagenes/relatividad.png" style="width: 800px"></p>
+            <div class="source">http://en.wikipedia.org/wiki/File:Spacetime_curvature.png</div>
+        </article>
+        </slide>
+
+        <!-- Qué es para mi la programación -->
+        <slide>
+        <hgroup>
+            <h2>Qué es para mi la programación</h2>
+        </hgroup>
+        <article>
+            <p>¿O la teoría de la evolución de las especies?</p>
+            <p class="centrado"><img alt="Evolución" src="imagenes/evolucion.jpg" style="width: 800px"></p>
+            <div class="source">http://nadefagus.blogspot.com.es/2012/09/response-to-darwins-theory.html</div>
+        </article>
+        </slide>
+            
+        <!-- Qué es para mi la programación -->
+        <slide>
+        <hgroup>
+            <h2>Qué es para mi la programación</h2>
+        </hgroup>
+        <article>
+            <p>¿O la teoría de la evolución de las especies aplicada a
+                la informática?</p>
+            <p class="centrado"><img alt="Evolución" src="imagenes/evolucion2.gif" style="width: 800px"></p>
+            <div class="source">http://www.oocities.org/talmahmood/GenderAndEvolution.html</div>
+        </article>
+        </slide>
+            
+        <!-- Qué es para mi la programación -->
+        <slide>
+        <hgroup>
+            <h2>Qué es para mi la programación</h2>
+        </hgroup>
+        <article>
+            <p>Pero claro, los informáticos no somos fashion.</p>
+            <p class="centrado"><img alt="James Gosling" src="imagenes/jamesGosling.jpg" style="width: 550px"></p>
+            <div class="source">http://www.terminalesandroid.com/james-gosling-fundador-de-java-se-une-a-google</div>
+        </article>
+        </slide>
+            
+        <!-- Qué es para mi la programación -->
+        <slide>
+        <hgroup>
+            <h2>Qué es para mi la programación</h2>
+        </hgroup>
+        <article>
+            <p>¿O si?</p>
+            <p class="centrado"><img alt="Fundadores de Google" src="imagenes/googleFounders.jpg" style="width: 550px"></p>
+            <div class="source">http://masalakingdom.com/forum/showthread.php/4637-Google-Founders-Sergey-Brin-amp-Larry-Page-Real-Life-New-Photos</div>
+        </article>
+        </slide>
+            
+        <!-- Qué es para mi la programación -->
+        <slide>
+        <hgroup>
+            <h2>Qué es para mi la programación</h2>
+        </hgroup>
+        <article>
+            <p>En cualquier caso, para reirse, lo mejor son los físicos.</p>
+            <p class="centrado"><img alt="Fundadores de Google" src="imagenes/bigBangTheory.jpg" style="width: 550px"></p>
+            <div class="source">http://palabrasxelmundo.blogspot.com.es/2012/04/indignacion-ante-la-quicker-than-ever.html</div>
+        </article>
+        </slide>
+            
+
+        <!-- Preguntas -->
+        <slide>
+        <hgroup>
+			<h2>Preguntas</h2>
+        </hgroup>
+		<article class="flexbox vcenter">
+            <p class="centrado"><img src="imagenes/question.jpg"></p>
+        </article>
+        </slide>
+    <!-- </section>-->
+    <slide class="backdrop"></slide>   
+    </slides>     
+    
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

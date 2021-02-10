@@ -1,0 +1,245 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>El método POST</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="../../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../../theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="../../js/slides" src="../../js/require-1.0.8.min.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28605511-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body style="opacity: 0">
+
+<!-- <slides class="layout-widescreen">-->
+<slides>
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="../../images/logo-uji.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title>Taller de Ingeniería del Software</h1>
+      <h2 data-config-subtitle>El método POST</h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+		<!-- Introducción -->
+        <slide>
+        <hgroup>
+			<h2>Introducción</h2>
+        </hgroup>
+		<article>
+			<p>El método <b>POST</b> nos sirve para crear o actualizar 
+				recursos en el servidor.</p>
+			<p>El significado semántico de la URI sobre la que se realiza
+				la petición es la dirección del servicio que atenderá la
+				petición.</p>
+			<p>Jersey proporciona anotaciones y clases muy útiles tanto
+				para procesar la petición como para generar la respuesta.</p>
+		</article>
+		</slide>
+		
+		<!-- Contenidos -->
+        <slide>
+        <hgroup>
+			<h2>Contenidos</h2>
+        </hgroup>
+		<article>
+			<ol>
+				<li>El método POST.</li>
+				<li>Recibiendo entidades con formato: anotación @Consumes.</li>
+				<li>Parámetros desde formularios: anotación @FormParam</li>
+				<li>Generando la respuesta. Inyección de URIs.</li>
+			</ol>
+		</article>
+		</slide>
+		
+		<!-- El método POST -->
+        <slide>
+        <hgroup>
+			<h2>El método POST</h2>
+        </hgroup>
+		<article>
+			<p>El método <b>POST</b> se utiliza para crear o modificar un recurso 
+				en el servidor.</p>
+			<p>POST no es ni idempotente, ni seguro, ni cacheable.</p>
+			<p>El recurso que va a atender la petición se indica en la URI de la petición.</p>
+			<p>En el cuerpo de la petición aparece la entidad en algún formato (XML, Json).</p>
+			<p>Al igual que en el método <b>GET</b>, en las cabeceras de la petición se puede 
+				incluir preferencias sobre el idioma, o el formato de la respuesta.</p>
+		</article>
+		</slide>
+
+		<!-- El método POST -->
+        <slide>
+        <hgroup>
+			<h2>El método POST</h2>
+        </hgroup>
+		<article>
+			<p>El cuerpo de la respuesta incluye una representación del recurso.</p>
+			<p>Las cabeceras de la respuesta incluyen información sobre el lenguaje utilizado, 
+				el formato, o la longitud de la respuesta en bytes.</p>
+			<p>Importante, si estamos creando un nuevo recurso en el servidor, la cabecera de la respuesta <b>Location</b> contendrá la URI del nuevo recurso 
+				recién creado.</p>
+		</article>
+		</slide>
+
+		<!-- Recibiendo entidades con formato -->
+        <slide>
+        <hgroup>
+			<h2>Recibiendo entidades con formato</h2>
+        </hgroup>
+		<article>
+			<p>Indicamos el formato de la entidad mediante la anotación <b>@Consumes</b> y como
+				argumento el MIME type correspondiente:</p>
+<pre class="prettyprint" data-lang="Java">
+@POST
+@Consumes(MediaType.APPLICATION_XML)
+public Response nuevaPersona(Persona persona) {
+	...
+</pre>
+			<p>En este caso estamos indicando que este método es capaz de aceptar
+				peticiones cuyo formato de entidad sea XML.</p>
+			<p>Jersey hará uso de JAXB para obtener un 
+				objeto de tipo <b>Persona</b> a partir de su representación como XML.</p>
+		</article>
+		</slide>
+
+		<!-- Parámetros desde formularios -->
+        <slide>
+        <hgroup>
+			<h2>Parámetros desde formularios</h2>
+        </hgroup>
+		<article>
+			<p>Podemos enviar parámetros desde un formulario en una petición POST.
+				Los parámetros no aparecen en la URI solicitada, sino en el cuerpo
+				de la petición.</p>
+			<p>Para recuperar los parámetros de una petición POST, debemos:</p>
+			<ol>
+				<li>Indicar que el tipo MIME que acepta el método es <b>MediaType.APPLICATION_FORM_URLENCODED</b>.</li>
+				<li>Obtener cada uno de los parámetros como argumentos del método mediante la 
+					anotación <b>@FormParam</b>.</li>
+			</ol>
+<pre class="prettyprint" data-lang="Java">
+@POST
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	public Response nuevaEntradaDesdeFormulario(
+			@FormParam("nombre") String nombre,
+			@FormParam("apellidos") @DefaultValue("") String apellidos,
+			@FormParam("nif") String nif) {
+			...
+</pre>
+		</article>
+		</slide>
+
+		<!-- Parámetros desde formularios -->
+        <slide>
+        <hgroup>
+			<h2>Parámetros desde formularios</h2>
+        </hgroup>
+		<article>
+			<p>Como en el caso de la anotación <b>@QueryParam</b> que hemos utilizado con 
+				el método <b>GET</b>, Jersey inyectará el tipo adecuado en cada un
+				de los argumentos del método.</p>
+		</article>
+		</slide>
+
+		<!-- Generando la respuesta. Inyección de URIs -->
+        <slide>
+        <hgroup>
+			<h2>Generando la respuesta. Inyección de URIs</h2>
+        </hgroup>
+		<article>
+			<p>La semántica del método <b>POST</b> exige:</p>
+			<ol>
+				<li>Si se crea una nueva entidad en el servidor el código de respuesta 
+					debe ser 201 Created.</li>
+				<li>La cabecera <b>Location</b> debe ser la URI del nuevo recurso
+					creado.</li>
+			</ol>
+			<p>Jersey nos puede inyectar información sobre la URI del servicio de dos modos:</p>
+			<ol>
+				<li>Mediante un atributo de la clase que representa el servicio.</li>
+				<li>Mediante un argumento del método que atenderá la aplicación.</li>
+			</ol>
+			<p>En cualquiera de los dos casos, para indicarlo, debemos utilizar la 
+				anotación <b>@Context</b> sobre una referencia de tipo <b>UriInfo</b></p>
+		</article>
+		</slide>
+
+		<!-- Generando la respuesta. Inyección de URIs -->
+        <slide>
+        <hgroup>
+			<h2>Generando la respuesta. Inyección de URIs</h2>
+        </hgroup>
+		<article>
+			<p>Una vez tenemos la URI, podemos construir otras usando las clases 
+				<b>UriBuilder</b> y <b>Uri</b> que nos ofrece Jersey.</p>
+<pre class="prettyprint" data-lang="Java">
+UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
+URI uri = uriBuilder.path(nif).build();
+return Response.created(uri).build();
+</pre>
+		</article>
+		</slide>
+
+		<!-- Resumen -->
+        <slide>
+        <hgroup>
+			<h2>Resumen</h2>
+        </hgroup>
+		<article>
+			<p>El método <b>POST</b> tiene una semántica bien definida, lo debemos usar para crear
+				nuevos recursos en el servidor, o actualizar recursos existentes 
+				a través de una URI que recibirá la petición.</p>
+		</article>
+		</slide>
+
+		<slide class="backdrop"></slide>
+        
+    </slides>
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

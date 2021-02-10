@@ -1,0 +1,185 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>El protocolo HTTP y el estilo arquitectónico REST</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="../../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../../theme/css/phone.css">
+  <link rel="stylesheet" media="all" href="../../css/miEstilo.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="../../js/slides" src="../../js/require-1.0.8.min.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28605511-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+<body style="opacity: 0">
+    <!-- <section class='slides layout-regular '>-->
+    <slides>
+      <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="../../images/logo-uji.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title>Taller de Ingeniería del Software</h1>
+      <h2 data-config-subtitle>El protocolo HTTP y el estilo arquitectónico REST</h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+  <!-- Introducción -->
+  <slide>
+    <hgroup>
+      <h2>Introducción</h2>
+    </hgroup>
+    <article>
+      <p><acronym><a href="http://en.wikipedia.org/wiki/Http">HTTP</a></acronym> (Hypertext Transfer Protocol) es el protocolo de la web. Es un protocolo muy rico, muchas veces muy poco aprovechado. Sin lugar a dudas la web es un caso de éxito en tecnología, sin ella no podemos concebir el mundo tecnológico tal y como es hoy en día.</p>
+
+      <p><acronym><a href="http://en.wikipedia.org/wiki/REST">REST</a></acronym> (Representational State Transfer) es un estilo arquitectónico para el desarrollo de aplicaciones Web. Su principal característica es que hace un uso completo del protocolo <acronym>HTTP</acronym>.</p>
+
+      <p>En este capítulo revisaremos el protocolo HTTP, veremos la filosofía del estilo arquitectónico REST, los niveles de una aplicación web para que sea RESTful, y cómo crear aplicaciones REST con <a href="https://jersey.java.net/">jersey</a></p>
+    </article>
+  </slide>
+  
+  <!-- Bibliografía -->
+  <slide>
+    <hgroup>
+      <h2>Bibliografía</h2>
+    </hgroup>
+    <article>
+      <ol>
+        <li><a href="http://cataleg.uji.es/record=b1352888~S1*cat">HTTP: the definitive guide.</a></li>
+        <li><a href="http://cataleg.uji.es/record=b1304718~S1*cat">Rest in practice.</a></li>
+        <li><a href="http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">Architectural Styles and the Design of Network-based Software Architectures</a></li>
+      </ol>
+    </article>
+  </slide>
+
+  <!-- Contenidos -->
+  <slide>
+    <hgroup>
+      <h2>Contenidos</h2>
+    </hgroup>
+    <article>
+      <ol>
+        <li></li>
+      </ol>
+    </article>
+  </slide>
+
+  <!-- HTTP -->
+  <slide>
+    <hgroup>
+      <h2>HTTP</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Sobre la capa de conexión TCP/IP.</li>
+        <li>Basado en el paradigma petición/respuesta.</li>
+        <li>Sin estado.</li>
+        <li>Orientado a la conexión.</li>
+        <li>Conjunto de verbos bien definido.</li>
+        <li>Conjunto de códigos de respuesta bien definido.</li>
+        <li>Conjunto de cabeceras, de petición y respuesta, bien definido.</li>
+      </ul>
+    </article>
+  </slide>
+
+  <!-- HTTP -->
+  <slide>
+    <hgroup>
+      <h2>HTTP</h2>
+    </hgroup>
+    <article>
+      <table>
+        <tbody>
+          <tr><td>Verbo</td><td>Seguro</td><td>Idempotente</td></tr>
+          <tr><td>GET</td><td>Sí</td><td>Sí</td></tr>
+          <tr><td>POST</td><td>No</td><td>No</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </slide>
+
+  <!-- HTTP -->
+  <slide>
+    <hgroup>
+      <h2>HTTP</h2>
+    </hgroup>
+    <article>
+      <h3>Anatomía de una petición GET</h3>
+      <pre class="prettyprint" data-lang='xml'>
+GET /Locations/offices/TI1203 HTTP/1.1
+User-Agent: curl/7.32.0
+Host: geotec.dlsi.uji.es:8080
+Accept: */*
+      Áquí hay una línea en blanco 
+      </pre>
+      <h3>Anatomía de la respuesta</h3>
+      <pre class="prettyprint" data-lang='xml'>
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Content-Type: application/xml
+Content-Length: 1207
+Date: Mon, 20 Jan 2014 21:45:55 GMT
+
+      Cuerpo de la respuesta 
+      </pre>
+    </article>
+  </slide>
+
+  <!--  -->
+  <slide>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article>
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>   
+
+</slides>
+    
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

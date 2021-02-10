@@ -1,0 +1,147 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>El método PUT</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="../../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../../theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="../../js/slides" src="../../js/require-1.0.8.min.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28605511-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body style="opacity: 0">
+
+<!-- <slides class="layout-widescreen">-->
+<slides>
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="../../images/logo-uji.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title>Taller de Ingeniería del Software</h1>
+      <h2 data-config-subtitle>El método PUT</h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+		<!-- Introducción -->
+        <slide>
+        <hgroup>
+			<h2>Introducción</h2>
+        </hgroup>
+		<article>
+			<p>La semántica del método <b>PUT</b> es la de creación o
+				actualización de recursos en el servidor.</p>
+			<p>Es muy semejante al método <b>POST</b> de hecho las 
+				operaciones son las misma, la diferencia estriba
+				en el significado de la URI que recibe la petición.</p>
+		</article>
+		</slide>
+		
+		<!-- Contenidos -->
+        <slide>
+        <hgroup>
+			<h2>Contenidos</h2>
+        </hgroup>
+		<article>
+			<ol>
+				<li>El método PUT.</li>
+			</ol>
+		</article>
+		</slide>
+		
+		<!-- El método PUT -->
+        <slide>
+        <hgroup>
+			<h2>El método PUT</h2>
+        </hgroup>
+		<article>
+			<p>El método <b>PUT</b> nos sirve para crear o actualizar recursos en 
+				el servidor.</p>
+			<p>La URI que recibe la petición representa la URI del recurso que se va 
+				a crear o actualizar.</p>
+			<p>El código de estado puede ser tanto 200 Ok como 204 No Content.</p>
+			<p>Si se devuelve el código 200 Ok, el cuerpo de la respuesta debe contener
+				una representación del recurso creado.</p>
+			<p>Si se devuelve un código 204 No Content, el código de la repuesta estará 
+				vacío.</p>
+		</article>
+		</slide>
+
+		<!-- El método PUT -->
+        <slide>
+        <hgroup>
+			<h2>El método PUT</h2>
+        </hgroup>
+		<article>
+			<p>Las mismas técnicas que utilizamos con el método <b>POST</b> las podemos utilizar
+				con el método <b>PUT</b>.</p>
+			<ol>
+				<li>Negociación de contenido con la anotación <b>@Consumes</b>.</li>
+				<li>Lectura de parámetros de un formulario con la anotación <b>@FormParam</b>.</li>
+				<li>Inyección y creación de URIs.</li>
+			</ol>
+		</article>
+		</slide>
+
+		<!-- Resumen -->
+        <slide>
+        <hgroup>
+			<h2>Resumen</h2>
+        </hgroup>
+		<article>
+			<p>Debemos utilizar el métodos <b>PUT</b> para crear o actulizar
+				recursos en el servidor.</p>
+			<p>La diferencia con el método <b>POST</b> radica en el significado
+				de la URI que recibe la petición: en el método <b>PUT</b> la URI es
+				la del recurso que se va a modificar o crear.</p>
+		</article>
+		</slide>
+
+		<slide class="backdrop"></slide>
+        
+    </slides>
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

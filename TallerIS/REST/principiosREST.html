@@ -1,0 +1,308 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Los principios de diseño de aplicaciones REST</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="../../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../../theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="../../js/slides" src="../../js/require-1.0.8.min.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28605511-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body style="opacity: 0">
+
+<!-- <slides class="layout-widescreen">-->
+<slides>
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="../../images/logo-uji.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title>Taller de Ingeniería del Software</h1>
+      <h2 data-config-subtitle>Los principios de diseño de aplicaciones REST</h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+		<!-- Introducción -->
+        <slide>
+        <hgroup>
+			<h2>Introducción</h2>
+        </hgroup>
+		<article>
+			<p>No es RESTful todo lo que reluce.</p>
+			<p>En este capítulo veremos cuales son las características en las 
+			 	que se debe basar una aplicación web para que pueda ser	 
+				considerada RESTful.</p>
+			<p>El siguiente capítulo es complementario de este, y en él veremos
+				una guía para el diseño de aplicaciones que pueden ser
+				clasificadas como RESTful.</p>
+		</article>
+		</slide>
+		
+		<!-- Contenidos -->
+        <slide>
+        <hgroup>
+			<h2>Contenidos</h2>
+        </hgroup>
+		<article>
+		<ol>
+			<li>Conceptos.</li>
+			<ol>
+				<li>Recursos.</li>
+				<li>URIs.</li>
+				<li>Representación.</li>
+				<li>Enlaces.</li>
+			</ol>
+			<li>Propiedades.</li>
+			<ol>
+				<li>Direccionable.</li>
+				<li>Sin estado.</li>
+				<li>Conexión.</li>
+				<li>Interfaz uniforme.</li>
+			</ol>
+		</ol>
+		</article>
+		</slide>
+		
+		<!-- Conceptos -->
+        <slide>
+        <hgroup>
+			<h2>Conceptos</h2>
+        </hgroup>
+		<article>
+            <p>Los conceptos son los elementos básicos para construir aplicaciones REST.</p>
+		    <p>El uso correcto de los cuatro conceptos que se van a presentar, junto con las
+                propiedades del protocolo HTTP, hacen que nuestras aplicaciones se
+                ajusten al estilo REST.</p>
+		</article>
+		</slide>
+
+		<!-- Conceptos -->
+		<!-- Recursos -->
+        <slide>
+        <hgroup>
+			<h2>Conceptos</h2>
+			<h2>Recursos</h2>
+        </hgroup>
+		<article>
+            <p>Un recurso es una pieza de información.</p>
+            <p>Un recurso es cualquier elemento que tenga suficiente entidad como para que
+                pueda ser referenciado, es decir, para que pueda ser enlazado mediante un 
+                link.</p>
+            <p>Algunos ejemplos:</p>
+            <ul>
+                <li>La página de bienvenida de mi empresa.</li>
+                <li>La lista de todos los contactos de mi empresa.</li>
+                <li>Una foto de mis vacaciones.</li>
+                <li>Un vídeo.</li>
+                <li>Una calculadora de la cuota mensual de una hipoteca.</li>
+            </ul>
+		</article>
+		</slide>
+
+		<!-- Conceptos -->
+		<!-- URIs -->
+        <slide>
+        <hgroup>
+			<h2>Conceptos</h2>
+			<h2>URIs</h2>
+        </hgroup>
+		<article>
+            <p>La URI es el mecanismo que hacen visible mi recurso en la web.</p>
+            <p>Una URI es como un <i>apuntador</i> a un recurso.</p>
+            <p>Puede ocurrir que el mismo recurso tenga más de una URI que lo apunta. 
+                Pero no puede ocurrir que una URI apunte a más de un único recurso.</p>
+            <p>Las URIs deben ser lo más descriptivas posible:</p>
+            <ul>
+                <li>http://www.uji.es/agenda/entradas/ Es claro.</li>
+                <li>http://www.uji.es/1/as2/ Es críptico.</li>
+            </ul> 
+		</article>
+		</slide>
+
+		<!-- Conceptos -->
+		<!-- Representación -->
+        <slide>
+        <hgroup>
+			<h2>Conceptos</h2>
+			<h2>Representación</h2>
+        </hgroup>
+		<article>
+            <p>Un mismo recurso puede tener más de una representación.</p>
+            <p>La lista de todas las entradas de mi agenda es un recurso. Este recurso lo
+                puedo representar en formato XML, como una hoja de cálculo, como una tabla,
+                o incluso como un pdf. En todos los casos el recurso es el mismo, lo que 
+                cambia es su representación.</p>
+		</article>
+		</slide>
+
+		<!-- Conceptos -->
+		<!-- Enlaces -->
+        <slide>
+        <hgroup>
+			<h2>Conceptos</h2>
+			<h2>Enlaces</h2>
+        </hgroup>
+		<article>
+            <p>Una de las características que han hecho de la Web una tecnología de éxito
+                es el hecho de que es posible establecer enlaces entre distintos recursos.</p>
+            <p>En una página web podemos incluir un enlace a otra página web, o a una imagen,
+                o a cualquier otro recurso accesible en la web.</p>
+            <p>Es importante que la representación de mis recursos contengan enlaces a 
+                otros recursos.</p>
+            <p>Al fin y al cabo, este es el significado de <i>Hypertext</i>.</p>
+		</article>
+		</slide>
+
+		<!-- Propiedades -->
+        <slide>
+        <hgroup>
+			<h2>Propiedades</h2>
+        </hgroup>
+		<article>
+            <p>Las propiedades del protocolo HTTP han hecho de él una tecnología de éxito.</p>
+            <p>Estas propiedades son sencilla, pero es fácil que las olvidemos cuando 
+                desarrollamos nuestras aplicaciones REST.</p>
+		</article>
+		</slide>
+
+		<!-- Propiedades -->
+		<!-- Direccionable -->
+        <slide>
+        <hgroup>
+			<h2>Propiedades</h2>
+			<h2>Direccionable</h2>
+        </hgroup>
+		<article>
+            <p>Como hemos visto, los recursos y las URIs que apuntan hacia ellos son conceptos
+                fundamentales en la Web (y en las aplicaciones REST).</p>
+            <p>Una aplicación REST debe exponer todos los recursos de interés a través de 
+                URIs.</p>
+            <p>Este es el significado de direccionable, los recursos de mi aplicación son
+                accesibles a través de las URIs que he definido para ello.</p>
+		</article>
+		</slide>
+
+		<!-- Propiedades -->
+		<!-- Sin estado -->
+        <slide>
+        <hgroup>
+			<h2>Propiedades</h2>
+			<h2>Sin estado</h2>
+        </hgroup>
+		<article>
+            <p>HTTP es un protocolo sin estado.</p>
+            <p>Que HTTP no tenga estado implica que, un servidor no tiene memoria (estado) entre
+                dos peticiones sucesivas. Cada petición es vista como completa e independiente
+                de cualquier otra.</p>
+            <p>Que HTTP sea un protocolo sin estado no significa que nuestras aplicaciones
+                no tengan estado. De hecho, REST significa Representational State Transfer, 
+                el estado de la aplicación (su representación) se transfiere entre el cliente
+                y el servidor para dar lugar a aplicaciones con estado.</p>
+            <p>En aplicaciones web con estado es común hacer uso de <i>Cookies</i> para 
+                almacenar el estado de la interacción. En las aplicaciones REST las <i>Cookies</i>
+                están totalmente desaconsejadas.</p>
+		</article>
+		</slide>
+
+		<!-- Propiedades -->
+		<!-- Conexión -->
+        <slide>
+        <hgroup>
+			<h2>Propiedades</h2>
+			<h2>Conexión</h2>
+        </hgroup>
+		<article>
+            <p>Esta propiedad está directamente relacionada con el concepto de 
+                <i>Direccionabilidad</i>.<p>
+            <p>Uno de los factores de éxito de la web es su <i>navegabilidad</i>, los recursos
+                expuestos en la web se pueden navegar gracias a los enlaces que existen
+                entre ellos.</p>
+            <p>La web es un conjunto de recursos conectados, navegables.</p>
+		</article>
+		</slide>
+
+		<!-- Propiedades -->
+		<!-- Interfaz uniforme -->
+        <slide>
+        <hgroup>
+			<h2>Propiedades</h2>
+			<h2>Interfaz uniforme</h2>
+        </hgroup>
+		<article>
+            <p>Cuando se presentaron los métodos disponibles en el protocolo HTTP, vimos que todos ellos
+                están disponibles para cualquier recurso.</p>
+            <p>Dicho de otro modo, sea cual sea el recurso, siempre disponemos del mismo conjunto de métodos para acceder a cualquier recurso.</p>
+            <p>Cada uno de los métodos tiene una semántica bien definida. Nuestras aplicaciones
+                siempre deben seguir la semántica de los métodos HTTP, no podemos 
+                <i>reinterpretar</i> el significado de los métodos.</p>
+            <p>Por ejemplo, GET se usa para <i>leer</i> un recurso. Nuestra aplicación no
+                debería hacer uso de GET para <i>modificar</i> el estado de un recurso.</p>
+		</article>
+		</slide>
+
+		<!-- Resumen -->
+        <slide>
+        <hgroup>
+			<h2>Resumen</h2>
+        </hgroup>
+		<article>
+			<p>En este capítulo hemos visto cuales son los conceptos y 
+				propiedades que debe poseer una aplicación Web para que pueda
+				ser clasificada como RESTful.</p>
+			<p>Estos conceptos y propiedades, aunque sencillos, son fáciles de
+				obviar.</p>
+			<p>En el siguiente capítulo vamos a ver una clasificación de las
+				aplicaciones web, y una guía para diseñar aplicaciones que 
+				pueden ser consideradas como RESTful.</p>
+		</article>
+		</slide>
+		
+  		<slide class="backdrop"></slide>
+        
+    </slides>
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

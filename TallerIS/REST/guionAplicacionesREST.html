@@ -1,0 +1,213 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Guión para el desarrollo de aplicaciones REST</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="../../theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../../theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="../../js/slides" src="../../js/require-1.0.8.min.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28605511-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body style="opacity: 0">
+
+<!-- <slides class="layout-widescreen">-->
+<slides>
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="../../images/logo-uji.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title>Taller de Ingeniería del Software</h1>
+      <h2 data-config-subtitle>Guión para el desarrollo de aplicaciones REST</h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+		<!-- Introducción -->
+        <slide>
+        <hgroup>
+			<h2>Introducción</h2>
+        </hgroup>
+		<article>
+			<p>Como hemos visto, no todas las aplicaciones web que se dicen
+				diseñadas bajo los principios REST lo son realmente.</p>
+			<p>En este capítulo vamos a ver una clasificación de las 
+				aplicaciones web que, de manera progresiva, se van acercando
+				a la arquitectura RESTful.</p>
+			<p>También veremos un guión que nos ayudará a construir nuestras
+				aplicaciones web según la arquitectura REST.</p>
+		</article>
+		</slide>
+		
+		<!-- Contenidos -->
+        <slide>
+        <hgroup>
+			<h2>Contenidos</h2>
+        </hgroup>
+		<article>
+            <ol>
+                <li>Richardson matturity model.</li>
+                <li>Guía para la creación de aplicaciones REST.</li>
+            </ol>
+		</article>
+		</slide>
+		
+        <!-- Richardson matturity model -->
+        <slide>
+        <hgroup>
+            <h2>Richardson matturity model</h2>
+        </hgroup>
+        <article>
+            <p>Muchas aplicaciones con el calificativo de REST realmente no lo son.</p>
+            <p>Para que nuestra aplicación pueda ser llamada REST (se dice que las 
+                aplicaciones son RESTful), han de hacer uso de los <i>Conceptos</i> y 
+                <i>Propiedades</i> que vimos en el capítulo anterior.</p>
+            <p>El modelo de madurez de Richardson clasifica a las aplicaciones por su
+                grado de cumplimiento de los principios REST.</p>
+        </article>
+        </slide>
+        
+        <!-- Richardson matturity model -->
+        <slide>
+        <hgroup>
+            <h2>Richardson matturity model</h2>
+            <h2>Nivel 0</h2>
+        </hgroup>
+        <article>
+            <p>Los servicios de Nivel 0 utilizan HTTP como capa de transporte. Nada más.</p>
+            <p>Muchos de ellos exponen una sola URI, que es la puerta de entrada a la 
+                aplicación Web.</p>
+            <p>Muchas de las aplicaciones SOAP se encuentran en este nivel, por ejemplo 
+                <i>Flickr</i>.</p>
+        </article>
+        </slide>
+        
+        <!-- Richardson matturity model -->
+        <slide>
+        <hgroup>
+            <h2>Richardson matturity model</h2>
+            <h2>Nivel 1</h2>
+        </hgroup>
+        <article>
+            <p>Existen URIs para cada uno de los recursos que se exponen, pero no
+                se sigue la semántica de los métodos HTTP.</p>
+            <p>Usualmente se utiliza GET para operaciones de lectura y POST para todo lo
+                demás (crear recurso, actualizar recursos, eliminar recurso).</p>
+        </article>
+        </slide>
+        
+        <!-- Richardson matturity model -->
+        <slide>
+        <hgroup>
+            <h2>Richardson matturity model</h2>
+            <h2>Nivel 2</h2>
+        </hgroup>
+        <article>
+            <p>En este nivel, las aplicaciones exponen URIs para acceder a recursos. Y se hace
+                el uso correcto de la semántica de los métodos.</p>
+            <p>Pero, no existen enlaces entre los recursos, dicho de otra manera, no 
+                se hace uso de la hipermedia.</p>
+            <p>Algunos ejemplos son el servicio S3 de Amazon.</p>
+        </article>
+        </slide>
+        
+        <!-- Richardson matturity model -->
+        <slide>
+        <hgroup>
+            <h2>Richardson matturity model</h2>
+            <h2>Nivel 3</h2>
+        </hgroup>
+        <article>
+            <p>Estas son las aplicaciones RESTful, cumplen con todos los principios REST:</p>
+            <ol>
+                <li>Exponen los recursos mediante URIs.</li>
+                <li>Cada recurso define una o más representaciones.</li>
+                <li>Usan los métodos HTTP con su semántica.</li>
+                <li>Los recursos están enlazados, contienen liks a otros recursos.</li>
+            </ol>
+        </article>
+        </slide>
+        
+        <!-- Guía para la creación de aplicaciones REST -->
+        <slide>
+        <hgroup>
+            <h2>Guía para la creación de aplicaciones REST</h2>
+        </hgroup>
+        <article>
+            <p>Crear aplicaciones RESTful es fácil, basta seguir los principios REST.</p>
+            <ol>
+                <li>Determina cuales son los recursos de tu aplicación.</li>
+                <li>Determina cuales son las representaciones válidas para tus recursos.</li>
+                <li>Define URIs para acceder a ellos.</li>
+                <li>Define los métodos que pueden actuar sobre cada uno de los recursos
+                    a través de sus URIs.</li>
+                <li>Determina los enlaces entre los distintos recursos e inclúyelos en sus
+                    representaciones.</li>
+            </ol>
+        </article>
+        </slide>
+        
+		<!-- Resumen -->
+        <slide>
+        <hgroup>
+			<h2>Resumen</h2>
+        </hgroup>
+		<article>
+			<p>El modelo de madurez de Richardson nos permite clasificar
+				una aplicación web por su grado de proximidad a la arquitectura
+				REST.</p>
+			<p>Pero, además de esto, nos ha permitido encontrar un sencillo
+				guión para poder construir aplicaciones web bajo esta 
+				arquitectura y que puedan ser llamadas, sin ambages, 
+				aplicaciones web RESTful.</p>
+		</article>
+		</slide>
+		
+		<slide class="backdrop"></slide>
+        
+    </slides>
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
