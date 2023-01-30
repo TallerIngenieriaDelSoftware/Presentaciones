@@ -9,203 +9,227 @@ URL: https://code.google.com/p/io-2012-slides
 
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Presentación del curso</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="chrome=1">
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-  <!--This one seems to work all the time, but really small on ipad-->
-  <!--<meta name="viewport" content="initial-scale=0.4">-->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <link rel="stylesheet" media="all" href="../../theme/css/default.css">
-  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../../theme/css/phone.css">
-  <link rel="stylesheet" media="all" href="../../css/miEstilo.css">
-  <base target="_blank">
-  <!-- This amazingness opens all links in a new tab. -->
-  <script data-main="../../js/slides" src="../../js/require-1.0.8.min.js"></script>
-<script type="text/javascript">
+    <title>Presentación del curso</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <!--This one seems to work all the time, but really small on ipad-->
+    <!--<meta name="viewport" content="initial-scale=0.4">-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" media="all" href="../../theme/css/default.css">
+    <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="../../theme/css/phone.css">
+    <link rel="stylesheet" media="all" href="../../css/miEstilo.css">
+    <base target="_blank">
+    <!-- This amazingness opens all links in a new tab. -->
+    <script data-main="../../js/slides" src="../../js/require-1.0.8.min.js"></script>
+    <script type="text/javascript">
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-28605511-1']);
-  _gaq.push(['_trackPageview']);
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28605511-1']);
+        _gaq.push(['_trackPageview']);
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
 
-</script>
+    </script>
 </head>
 
 <body style="opacity: 0">
     <!-- <section class='slides layout-regular '>-->
     <slides>
-      <slide class="title-slide segue nobackground">
-    <aside class="gdbar"><img src="../../images/logo-uji.png"></aside>
-    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
-    <hgroup class="auto-fadein">
-      <h1 data-config-title>Taller de Ingeniería del Software</h1>
-      <h2 data-config-subtitle>Presentación del curso</h2>
-      <p data-config-presenter><!-- populated from slide_config.json --></p>
-    </hgroup>
-  </slide>
+        <slide class="title-slide segue nobackground">
+            <aside class="gdbar"><img src="../../images/logo-uji.png"></aside>
+            <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+            <hgroup class="auto-fadein">
+                <h1 data-config-title>Taller de Ingeniería del Software</h1>
+                <h2 data-config-subtitle>Presentación del curso</h2>
+                <p data-config-presenter><!-- populated from slide_config.json --></p>
+            </hgroup>
+        </slide>
 
         <!-- Yo -->
         <slide>
-        <hgroup>
-			<h2>Yo</h2>
-        </hgroup>
-		<article>
-            <p>Óscar Belmonte Fernández.</p>
-            <p>Despacho TI1203DD.</p>
-            <p>Página web: <a href="http://www3.uji.es/~belfern">http://www3.uji.es/~belfern</a></p>
-            <p>Correo electrónico: <a href="mailto:oscar.belmonte@uji.es">oscar.belmonte@uji.es</a></p>
-            <p><b>Tutorías</b></p>
-            <p>Lunes: 12:00 - 13:30.</p>
-            <p>Martes: 12:00 - 13:30.</p>
-        </article>
+            <hgroup>
+                <h2>Yo</h2>
+            </hgroup>
+            <article>
+                <p>Óscar Belmonte Fernández.</p>
+                <p>Despacho TI1203DD.</p>
+                <p>Página web: <a href="http://www3.uji.es/~belfern">http://www3.uji.es/~belfern</a></p>
+                <p>Correo electrónico: <a href="mailto:oscar.belmonte@uji.es">oscar.belmonte@uji.es</a></p>
+                <p><b>Tutorías</b></p>
+                <p>Lunes: 12:00 - 13:30.</p>
+                <p>Martes: 12:00 - 13:30.</p>
+            </article>
         </slide>
 
 
         <!-- Estructura -->
         <slide>
-        <hgroup>
-			<h2>Estructura</h2>
-        </hgroup>
-		<article>
-            <p>Asignatura optativa.</p>
-            <p>Cuarto curso. Segundo semestre.</p>
-            <p>6 créditos (150 h.) &rarr; 46 presenciales, 104 NO presenciales.</p>
-            <p>Información en el <a href="https://ujiapps.uji.es/sia/rest/publicacion/2021/estudio/225/asignatura/EI1049">sia</a></p>
-        </article>
+            <hgroup>
+                <h2>Estructura</h2>
+            </hgroup>
+            <article>
+                <p>Asignatura optativa.</p>
+                <p>Cuarto curso. Segundo semestre.</p>
+                <p>6 créditos (150 h.) &rarr; 46 presenciales, 104 NO presenciales.</p>
+                <p>Información en el <a
+                        href="https://ujiapps.uji.es/sia/rest/publicacion/2022/estudio/225/asignatura/EI1049">sia</a>
+                </p>
+            </article>
         </slide>
 
         <!-- Como se relaciona con otras asignaturas -->
         <slide>
-        <hgroup>
-            <h2>Como se relaciona con otras asignaturas</h2>
-        </hgroup>
-        <article>
-            <p>Esta asignatura se relaciona, en mayor o menor medida, con todas las asignaturas del grado.</p>
-        </article>
+            <hgroup>
+                <h2>Como se relaciona con otras asignaturas</h2>
+            </hgroup>
+            <article>
+                <p>Esta asignatura se relaciona, en mayor o menor medida, con todas las asignaturas del grado.</p>
+            </article>
         </slide>
 
         <!-- Temario -->
         <slide>
-        <hgroup>
-			<h2>Temario</h2>
-        </hgroup>
-		<article>
-            <p><b>Teoría</b></p>
-            <ol>
-                <li>Protocolo HTTP. Estilo arquitectónico REST.</li>
-                <!-- <li>Historias de usuario y pruebas de aceptación con Cucumber.</li> -->
-                <li>Acceso a bases de datos con JPA.</li>
-                <li>Clientes web: Bootstrap, Javascript, Vue.</li>
-                <!-- <li>Pruebas de integración con Cucumber y WebDriver.</li> -->
-            </ol>
-            <p><b>Seminarios</b></p>
-            <ol>
-              <li>Desarrollo de aplicaciones REST con javascript.</li>
-                <li>Bases de datos Not only SQL.</li>
-                <li>Pruebas de código con javascript.</li>
-                <li>Herramientas de construcción de proyectos con javascript.</li>
-            </ol>
-        </article>
+            <hgroup>
+                <h2>Temario</h2>
+            </hgroup>
+            <article>
+                <p><b>Teoría</b></p>
+                <ol>
+                    <li>Protocolo HTTP. Estilo arquitectónico REST.</li>
+                    <!-- <li>Historias de usuario y pruebas de aceptación con Cucumber.</li> -->
+                    <li>Acceso a bases de datos con JPA.</li>
+                    <li>Clientes web: Bootstrap, Javascript, Vue.</li>
+                    <!-- <li>Pruebas de integración con Cucumber y WebDriver.</li> -->
+                </ol>
+                <p><b>Seminarios</b></p>
+                <ol>
+                    <li>Desarrollo de aplicaciones REST con javascript.</li>
+                    <li>Bases de datos Not only SQL.</li>
+                    <li>Pruebas de código con javascript.</li>
+                    <li>Herramientas de construcción de proyectos con javascript.</li>
+                </ol>
+            </article>
         </slide>
 
         <!-- Metodología -->
         <slide>
-        <hgroup>
-			<h2>Metodología</h2>
-        </hgroup>
-		<article>
-            <p><b>Teoría:</b></p>
-            <p>Nuevos conceptos teóricos, muchos de ellos relacionados con la programación web.</p>
-            <p><b>Seminarios:</b></p>
-            <p>Revisaremos el trabajo realizado y, analizarás y compararás distintas alternativas tecnológicas.</p>
-            <p>
-              <b>Prácticas:</b>
-            </p>
-            <p>
-              Desarrollarás tu proyecto según lo planificado en la asignatura EI1050.
-            </p>
-        </article>
+            <hgroup>
+                <h2>Metodología</h2>
+            </hgroup>
+            <article>
+                <p><b>Teoría:</b></p>
+                <p>Nuevos conceptos teóricos, muchos de ellos relacionados con la programación web.</p>
+                <p><b>Seminarios:</b></p>
+                <p>Revisaremos el trabajo realizado y, analizarás y compararás distintas alternativas tecnológicas.</p>
+                <p>
+                    <b>Prácticas:</b>
+                </p>
+                <p>
+                    Desarrollarás tu proyecto según lo planificado en la asignatura EI1050.
+                </p>
+            </article>
         </slide>
 
         <!-- Bibliografía -->
         <slide>
-        <hgroup>
-			<h2>Bibliografía</h2>
-        </hgroup>
-		<article>
-            <h3>Bibliografía</h3>
-            <p>Los contenidos del curso centralizados en <a href="https://aulavirtual.uji.es/course/view.php?id=57281">
-                aulavirtual</a></p>
-            <p><b>Bibliografía básica:</b></p>
-            <ol>
-                <li><a href="http://cataleg.uji.es/record=b1268480~S1*cat">RESTful web services</a></li>
-                <li><a href="http://cataleg.uji.es/record=b1303113~S1*cat">Growing object-oriented software, guided by tests</a></li>
-                <li><a href="http://cataleg.uji.es/record=b1339634~S1*cat">Building Android apps with HTML, CSS, and JavaScript</a></li>
-            </ol>
-            <p><b>Bibliografía complementaria:</b></p>
-            <ol>
-                <li><a href="http://cataleg.uji.es/record=b1290789~S1*cat">RESTful Web services cookbook</a></li>
-                <li><a href="http://cataleg.uji.es/record=b1331691~S1*cat">JavaScript web applications</a></li>
-            </ol>
-        </article>
+            <hgroup>
+                <h2>Bibliografía</h2>
+            </hgroup>
+            <article>
+                <h3>Bibliografía</h3>
+                <p>Los contenidos del curso centralizados en <a
+                        href="https://aulavirtual.uji.es/course/view.php?id=76162">
+                        aulavirtual</a></p>
+                <p><b>Bibliografía básica:</b></p>
+                <ol>
+                    <li><a href="https://cataleg.uji.es/permalink/34CVA_UJI/1nbr95r/alma991001962299706336">RESTful web
+                            services</a></li>
+                    <li><a href="https://cataleg.uji.es/permalink/34CVA_UJI/1nbr95r/alma991003607429706336">Growing
+                            object-oriented software, guided
+                            by tests</a></li>
+                </ol>
+                <p><b>Bibliografía complementaria:</b></p>
+                <ol>
+                    <li><a href="https://cataleg.uji.es/permalink/34CVA_UJI/1nbr95r/alma991003104979706336">RESTful Web
+                            services cookbook</a></li>
+                    <li><a href="https://cataleg.uji.es/permalink/34CVA_UJI/1nbr95r/alma991000719889706336">JavaScript
+                            web applications</a></li>
+                </ol>
+            </article>
         </slide>
 
         <!-- Sistema de evaluación -->
         <slide>
-        <hgroup>
-            <h2>Sistema de evaluación</h2>
-        </hgroup>
-        <article>
-            <table>
-                <tbody>
-                    <tr><td>Proyecto.</td><td>85%</td></tr>
-                    <tr><td>Presentación oral en inglés.</td><td>15%</td></tr>
-                </tbody>
-            </table>
-            <h3>Proyecto:</h3>
-            <p>El estudiante realizará un proyecto, en grupo de 4-5 alumnos, que irá desarrollando tanto en las sesiones de prácticas como de forma autónoma como parte de su trabajo personal. Deberá entregar el código fuente de su proyecto para su revisión, así como una memoria descriptiva con el trabajo desarrollado. La nota del proyecto será la misma para cada uno de los integrantes del grupo.</p>
-        </article>
+            <hgroup>
+                <h2>Sistema de evaluación</h2>
+            </hgroup>
+            <article>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Proyecto.</td>
+                            <td>85%</td>
+                        </tr>
+                        <tr>
+                            <td>Presentación oral en inglés.</td>
+                            <td>15%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Proyecto:</h3>
+                <p>El estudiante realizará un proyecto, en grupo de 4-5 alumnos, que irá desarrollando tanto en las
+                    sesiones de prácticas como de forma autónoma como parte de su trabajo personal. Deberá entregar el
+                    código fuente de su proyecto para su revisión, así como una memoria descriptiva con el trabajo
+                    desarrollado. La nota del proyecto será la misma para cada uno de los integrantes del grupo.</p>
+            </article>
         </slide>
 
         <!-- Sistema de evaluación -->
         <slide>
-        <hgroup>
-			<h2>Sistema de evaluación</h2>
-        </hgroup>
-		<article>
-            <h3>Presentación oral en inglés</h3>
-            <p>El estudiante, con su grupo de trabajo, elaborará y realizará una presentación del trabajo realizado. La presentación de este trabajo se realizará en inglés. Cada uno de los miembros del grupo, por turnos y de manera equitativa, tomará parte en la presentación del trabajo. La nota de final de la presentación constará de dos partes:
-            <ol>
-                <li>El 50% de la nota evaluará los materiales utilizados en la presentación, y será la misma para todos los miembros del grupo.</li>
-                <li>El otro 50% de la nota evaluará la parte de presentación individual de cada miembro del grupo.</li>
-            </ol>
-            </p>
-        </article>
+            <hgroup>
+                <h2>Sistema de evaluación</h2>
+            </hgroup>
+            <article>
+                <h3>Presentación oral en inglés</h3>
+                <p>El estudiante, con su grupo de trabajo, elaborará y realizará una presentación del trabajo realizado.
+                    La presentación de este trabajo se realizará en inglés. Cada uno de los miembros del grupo, por
+                    turnos y de manera equitativa, tomará parte en la presentación del trabajo. La nota de final de la
+                    presentación constará de dos partes:
+                <ol>
+                    <li>El 50% de la nota evaluará los materiales utilizados en la presentación, y será la misma para
+                        todos los miembros del grupo.</li>
+                    <li>El otro 50% de la nota evaluará la parte de presentación individual de cada miembro del grupo.
+                    </li>
+                </ol>
+                </p>
+            </article>
         </slide>
 
         <!-- Sistema de evaluación -->
         <slide>
-        <hgroup>
-            <h2>Sistema de evaluación</h2>
-        </hgroup>
-        <article>
-            <h3>Criterio de superación de la asignatura:</h3>
-            <p>PPara aprobar la asignatura el estudiante debe conseguir una nota mínima de 4 puntos sobre 10 en la evaluación del proyecto. No hay nota mínima en la parte correspondiente a la presentación en inglés. La media ponderada global debe ser mayor o igual a 5 puntos sobre 10 para aprobar la asignatura</p>
-            <p>
-              Se considerará que un alumno se ha presentado a una convocatoria si entrega el proyecto.
-            </p>
-            <p>
-              Si una de las pruebas está aprobada, su nota se guardará en las convocatorias del mismo curso.
-            </p>
-        </article>
+            <hgroup>
+                <h2>Sistema de evaluación</h2>
+            </hgroup>
+            <article>
+                <h3>Criterio de superación de la asignatura:</h3>
+                <p>PPara aprobar la asignatura el estudiante debe conseguir una nota mínima de 4 puntos sobre 10 en la
+                    evaluación del proyecto. No hay nota mínima en la parte correspondiente a la presentación en inglés.
+                    La media ponderada global debe ser mayor o igual a 5 puntos sobre 10 para aprobar la asignatura</p>
+                <p>
+                    Se considerará que un alumno se ha presentado a una convocatoria si entrega el proyecto.
+                </p>
+                <p>
+                    Si una de las pruebas está aprobada, su nota se guardará en las convocatorias del mismo curso.
+                </p>
+            </article>
         </slide>
 
         <!-- Sistema de evaluación -->
@@ -221,28 +245,29 @@ URL: https://code.google.com/p/io-2012-slides
 
         <!-- Preguntas -->
         <slide>
-        <hgroup>
-            <h2>Otras consideraciones</h2>
-        </hgroup>
-        <article>
-            <p>Estás llegando al final del grado, el proyecto sobre el que vas a trabajar te va a servir para:</p>
-            <ul class="build">
-                <li>Poner en práctica el desarrollo de proyectos con metodologías ágiles.</li>
-                <li>Conocer un buen número de tecnologías que se están usando actualmente.</li>
-                <li>Ser muy participativo aportando tanto preguntas como respuestas a las preguntas de tus compañeros.</li>
-                <li>Colaborar antes que competir.</li>
-            </ul>
-        </article>
+            <hgroup>
+                <h2>Otras consideraciones</h2>
+            </hgroup>
+            <article>
+                <p>Estás llegando al final del grado, el proyecto sobre el que vas a trabajar te va a servir para:</p>
+                <ul class="build">
+                    <li>Poner en práctica el desarrollo de proyectos con metodologías ágiles.</li>
+                    <li>Conocer un buen número de tecnologías que se están usando actualmente.</li>
+                    <li>Ser muy participativo aportando tanto preguntas como respuestas a las preguntas de tus
+                        compañeros.</li>
+                    <li>Colaborar antes que competir.</li>
+                </ul>
+            </article>
         </slide>
 
         <!-- Preguntas -->
         <slide>
-        <hgroup>
-            <h2>Preguntas</h2>
-        </hgroup>
-        <article class="flexbox vcenter">
-            <p class="centrado"><img src="imagenes/question.jpg"></p>
-        </article>
+            <hgroup>
+                <h2>Preguntas</h2>
+            </hgroup>
+            <article class="flexbox vcenter">
+                <p class="centrado"><img src="imagenes/question.jpg"></p>
+            </article>
         </slide>
 
 
@@ -250,21 +275,22 @@ URL: https://code.google.com/p/io-2012-slides
 
     </slides>
 
-<script>
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
-_gaq.push(['_trackPageview']);
+    <script>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+        _gaq.push(['_trackPageview']);
 
-(function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-</script>
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
 
-<!--[if IE]>
+    <!--[if IE]>
   <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
   <script>CFInstall.check({mode: 'overlay'});</script>
 <![endif]-->
 </body>
+
 </html>
